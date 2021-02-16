@@ -23,13 +23,21 @@ class ConverterViewControllerUITests: XCTestCase {
         XCTAssertTrue(title.exists)
     }
     
-    func testTwoCurrencyLabelExist() throws {
+    func testCurrencyButtonsHaveCorrectTitles() throws {
         let firstCurrency = app.buttons["firstCurrency"]
-        XCTAssertTrue(firstCurrency.exists)
         XCTAssertEqual(firstCurrency.label, "USD", "First currency should be USD")
                 
         let secondCurrency = app.buttons["secondCurrency"]
-        XCTAssertTrue(secondCurrency.exists)
         XCTAssertEqual(secondCurrency.label, "RUB", "Second currency should be RUB")
+    }
+    
+    func testCurrencyButtonsAreConfiguredCorrectly() throws {
+        let firstCurrency = app.buttons["firstCurrency"]
+        XCTAssertTrue(firstCurrency.exists)
+        XCTAssertEqual(firstCurrency.frame.size.height, 100, "The height of the first currency button must be 100")
+
+        let secondCurrency = app.buttons["secondCurrency"]
+        XCTAssertTrue(secondCurrency.exists)
+        XCTAssertEqual(secondCurrency.frame.size.height, 100, "The height of the second currency button must be 100")
     }
 }

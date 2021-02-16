@@ -44,16 +44,17 @@ class ConverterViewController: UIViewController {
         
         let padding: CGFloat = 10
         let safeArea = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
+        let constraints = [
             firstCurrency.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: padding),
             firstCurrency.heightAnchor.constraint(equalToConstant: 100),
             firstCurrency.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: padding),
             firstCurrency.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -padding),
-
+            
             secondCurrency.topAnchor.constraint(equalTo: firstCurrency.bottomAnchor, constant: padding),
             secondCurrency.heightAnchor.constraint(equalToConstant: 100),
             secondCurrency.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: padding),
             secondCurrency.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -padding),
-        ])
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
 }
