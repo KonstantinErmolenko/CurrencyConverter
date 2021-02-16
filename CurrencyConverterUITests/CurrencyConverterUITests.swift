@@ -36,16 +36,31 @@ class ConverterViewControllerUITests: XCTestCase {
         XCTAssertTrue(firstCurrency.exists)
         XCTAssertEqual(
             firstCurrency.frame.size.height,
-            100,
-            "The height of the first currency button must be 100"
+            120,
+            "The height of the first currency button must be 120"
         )
 
         let secondCurrency = app.buttons["secondCurrency"]
         XCTAssertTrue(secondCurrency.exists)
         XCTAssertEqual(
             secondCurrency.frame.size.height,
-            100,
-            "The height of the second currency button must be 100"
+            120,
+            "The height of the second currency button must be 120"
         )
+    }
+
+    func testAccessoryPanelConfiguredCorrectly() throws {
+        let accessoryPanel = app.otherElements["accessoryPanel"]
+        XCTAssertTrue(accessoryPanel.exists)
+        XCTAssertEqual(
+            accessoryPanel.frame.size.height,
+            60,
+            "The height of the accessory panel must be 60"
+        )
+    }
+
+    func testKeyboardConfiguredCorrectly() throws {
+        let keyboard = app.otherElements["keyboard"]
+        XCTAssertTrue(keyboard.exists)
     }
 }
