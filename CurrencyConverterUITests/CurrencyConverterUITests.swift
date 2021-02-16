@@ -34,10 +34,18 @@ class ConverterViewControllerUITests: XCTestCase {
     func testCurrencyButtonsAreConfiguredCorrectly() throws {
         let firstCurrency = app.buttons["firstCurrency"]
         XCTAssertTrue(firstCurrency.exists)
-        XCTAssertEqual(firstCurrency.frame.size.height, 100, "The height of the first currency button must be 100")
+        XCTAssertEqual(
+            firstCurrency.frame.size.height,
+            100,
+            "The height of the first currency button must be 100"
+        )
 
         let secondCurrency = app.buttons["secondCurrency"]
         XCTAssertTrue(secondCurrency.exists)
-        XCTAssertEqual(secondCurrency.frame.size.height, 100, "The height of the second currency button must be 100")
+        XCTAssertEqual(
+            secondCurrency.frame.size.height,
+            100,
+            "The height of the second currency button must be 100"
+        )
     }
 }
