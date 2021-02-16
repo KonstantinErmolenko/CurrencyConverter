@@ -98,8 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				A98DA1C725DC0F700081D4BB /* Supporting files */,
-				A98DA19225DC0AE20081D4BB /* ConverterViewController.swift */,
-				A98DA19925DC0AE20081D4BB /* LaunchScreen.storyboard */,
+				A98DA1D625DC1BA90081D4BB /* Models */,
+				A98DA1D425DC1B790081D4BB /* Views */,
+				A98DA1D525DC1B980081D4BB /* Controllers */,
 			);
 			path = CurrencyConverter;
 			sourceTree = "<group>";
@@ -131,6 +132,29 @@
 				A98DA19C25DC0AE20081D4BB /* Info.plist */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		A98DA1D425DC1B790081D4BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A98DA19925DC0AE20081D4BB /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A98DA1D525DC1B980081D4BB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A98DA19225DC0AE20081D4BB /* ConverterViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A98DA1D625DC1BA90081D4BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
