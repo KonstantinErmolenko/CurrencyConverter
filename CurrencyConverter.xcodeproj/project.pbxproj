@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A97B0C8825DEB44100CC715A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C8725DEB44100CC715A /* Colors.swift */; };
+		A97B0C8E25DEB79300CC715A /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C8D25DEB79300CC715A /* UIView+Ext.swift */; };
+		A97B0C9425DEB87200CC715A /* AccessoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C9325DEB87200CC715A /* AccessoryButton.swift */; };
+		A97FADFC25DD606F00319D84 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97FADFB25DD606F00319D84 /* KeyboardButton.swift */; };
+		A97FAE0125DD6B3900319D84 /* KeyboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */; };
 		A98DA18F25DC0AE20081D4BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA18E25DC0AE20081D4BB /* AppDelegate.swift */; };
 		A98DA19125DC0AE20081D4BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA19025DC0AE20081D4BB /* SceneDelegate.swift */; };
-		A98DA19325DC0AE20081D4BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA19225DC0AE20081D4BB /* ViewController.swift */; };
-		A98DA19625DC0AE20081D4BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A98DA19425DC0AE20081D4BB /* Main.storyboard */; };
+		A98DA19325DC0AE20081D4BB /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA19225DC0AE20081D4BB /* ConverterViewController.swift */; };
 		A98DA19825DC0AE20081D4BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A98DA19725DC0AE20081D4BB /* Assets.xcassets */; };
 		A98DA19B25DC0AE20081D4BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A98DA19925DC0AE20081D4BB /* LaunchScreen.storyboard */; };
 		A98DA1A625DC0AE30081D4BB /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA1A525DC0AE30081D4BB /* CurrencyConverterTests.swift */; };
 		A98DA1B125DC0AE30081D4BB /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA1B025DC0AE30081D4BB /* CurrencyConverterUITests.swift */; };
+		A98DA1DB25DC31560081D4BB /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA1DA25DC31560081D4BB /* Keyboard.swift */; };
+		A98DA1E025DC32CF0081D4BB /* AccessoryPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA1DF25DC32CF0081D4BB /* AccessoryPanel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A97B0C8725DEB44100CC715A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		A97B0C8D25DEB79300CC715A /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		A97B0C9325DEB87200CC715A /* AccessoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryButton.swift; sourceTree = "<group>"; };
+		A97FADFB25DD606F00319D84 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
+		A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow.swift; sourceTree = "<group>"; };
 		A98DA18B25DC0AE20081D4BB /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98DA18E25DC0AE20081D4BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A98DA19025DC0AE20081D4BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A98DA19225DC0AE20081D4BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A98DA19525DC0AE20081D4BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A98DA19225DC0AE20081D4BB /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		A98DA19725DC0AE20081D4BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A98DA19A25DC0AE20081D4BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A98DA19C25DC0AE20081D4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +59,8 @@
 		A98DA1AC25DC0AE30081D4BB /* CurrencyConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98DA1B025DC0AE30081D4BB /* CurrencyConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITests.swift; sourceTree = "<group>"; };
 		A98DA1B225DC0AE30081D4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A98DA1DA25DC31560081D4BB /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		A98DA1DF25DC32CF0081D4BB /* AccessoryPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryPanel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +88,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A97B0C8625DEB42D00CC715A /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A97B0C8725DEB44100CC715A /* Colors.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A97B0C8C25DEB78C00CC715A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A97B0C8D25DEB79300CC715A /* UIView+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A97B0C9225DEB85800CC715A /* AccessoryPanel */ = {
+			isa = PBXGroup;
+			children = (
+				A98DA1DF25DC32CF0081D4BB /* AccessoryPanel.swift */,
+				A97B0C9325DEB87200CC715A /* AccessoryButton.swift */,
+			);
+			path = AccessoryPanel;
+			sourceTree = "<group>";
+		};
+		A97FADFA25DD605900319D84 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A98DA1DA25DC31560081D4BB /* Keyboard.swift */,
+				A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */,
+				A97FADFB25DD606F00319D84 /* KeyboardButton.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
 		A98DA18225DC0AE20081D4BB = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +146,12 @@
 		A98DA18D25DC0AE20081D4BB /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
-				A98DA18E25DC0AE20081D4BB /* AppDelegate.swift */,
-				A98DA19025DC0AE20081D4BB /* SceneDelegate.swift */,
-				A98DA19225DC0AE20081D4BB /* ViewController.swift */,
-				A98DA19425DC0AE20081D4BB /* Main.storyboard */,
-				A98DA19725DC0AE20081D4BB /* Assets.xcassets */,
-				A98DA19925DC0AE20081D4BB /* LaunchScreen.storyboard */,
-				A98DA19C25DC0AE20081D4BB /* Info.plist */,
+				A98DA1C725DC0F700081D4BB /* Supporting files */,
+				A98DA1D625DC1BA90081D4BB /* Models */,
+				A98DA1D425DC1B790081D4BB /* Views */,
+				A98DA1D525DC1B980081D4BB /* Controllers */,
+				A97B0C8625DEB42D00CC715A /* Constants */,
+				A97B0C8C25DEB78C00CC715A /* Extensions */,
 			);
 			path = CurrencyConverter;
 			sourceTree = "<group>";
@@ -126,6 +172,42 @@
 				A98DA1B225DC0AE30081D4BB /* Info.plist */,
 			);
 			path = CurrencyConverterUITests;
+			sourceTree = "<group>";
+		};
+		A98DA1C725DC0F700081D4BB /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				A98DA19025DC0AE20081D4BB /* SceneDelegate.swift */,
+				A98DA18E25DC0AE20081D4BB /* AppDelegate.swift */,
+				A98DA19725DC0AE20081D4BB /* Assets.xcassets */,
+				A98DA19C25DC0AE20081D4BB /* Info.plist */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		A98DA1D425DC1B790081D4BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A98DA19925DC0AE20081D4BB /* LaunchScreen.storyboard */,
+				A97FADFA25DD605900319D84 /* Keyboard */,
+				A97B0C9225DEB85800CC715A /* AccessoryPanel */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A98DA1D525DC1B980081D4BB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A98DA19225DC0AE20081D4BB /* ConverterViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A98DA1D625DC1BA90081D4BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +315,6 @@
 			files = (
 				A98DA19B25DC0AE20081D4BB /* LaunchScreen.storyboard in Resources */,
 				A98DA19825DC0AE20081D4BB /* Assets.xcassets in Resources */,
-				A98DA19625DC0AE20081D4BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +339,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A98DA19325DC0AE20081D4BB /* ViewController.swift in Sources */,
+				A97B0C9425DEB87200CC715A /* AccessoryButton.swift in Sources */,
+				A97FADFC25DD606F00319D84 /* KeyboardButton.swift in Sources */,
+				A97B0C8825DEB44100CC715A /* Colors.swift in Sources */,
+				A97FAE0125DD6B3900319D84 /* KeyboardRow.swift in Sources */,
+				A98DA19325DC0AE20081D4BB /* ConverterViewController.swift in Sources */,
 				A98DA18F25DC0AE20081D4BB /* AppDelegate.swift in Sources */,
+				A97B0C8E25DEB79300CC715A /* UIView+Ext.swift in Sources */,
+				A98DA1DB25DC31560081D4BB /* Keyboard.swift in Sources */,
+				A98DA1E025DC32CF0081D4BB /* AccessoryPanel.swift in Sources */,
 				A98DA19125DC0AE20081D4BB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,14 +384,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A98DA19425DC0AE20081D4BB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A98DA19525DC0AE20081D4BB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A98DA19925DC0AE20081D4BB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -438,7 +518,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59M6A9TM7B;
-				INFOPLIST_FILE = CurrencyConverter/Info.plist;
+				INFOPLIST_FILE = "CurrencyConverter/Supporting files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,7 +538,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59M6A9TM7B;
-				INFOPLIST_FILE = CurrencyConverter/Info.plist;
+				INFOPLIST_FILE = "CurrencyConverter/Supporting files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

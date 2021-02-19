@@ -1,42 +1,76 @@
 //
-//  CurrencyConverterUITests.swift
-//  CurrencyConverterUITests
+//  ConverterViewControllerUITests.swift
+//  ConverterViewControllerUITests
 //
 //  Created by Ермоленко Константин on 16.02.2021.
 //
 
 import XCTest
 
-class CurrencyConverterUITests: XCTestCase {
+class ConverterViewControllerUITests: XCTestCase {
+    
+    var app: XCUIApplication!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        
+        app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+    func testConverterIsStartingScreen() throws {
+        let title = app.navigationBars["Converter"]
+        XCTAssertTrue(title.exists)
+    }
+    
+    func testCurrencyButtonsHaveCorrectTitles() throws {
+        let firstCurrency = app.buttons["firstCurrency"]
+        XCTAssertEqual(firstCurrency.label, "USD", "First currency should be USD")
+                
+        let secondCurrency = app.buttons["secondCurrency"]
+        XCTAssertEqual(secondCurrency.label, "RUB", "Second currency should be RUB")
+    }
+    
+    func testCurrencyButtonsAreConfiguredCorrectly() throws {
+        let firstCurrency = app.buttons["firstCurrency"]
+        XCTAssertTrue(firstCurrency.exists)
+        let secondCurrency = app.buttons["secondCurrency"]
+        XCTAssertTrue(secondCurrency.exists)
+    }
+
+    func testAccessoryPanelConfiguredCorrectly() throws {
+        let accessoryPanel = app.otherElements["accessoryPanel"]
+        XCTAssertTrue(accessoryPanel.exists)
+        let button1 = app.buttons["previousButton"]
+        XCTAssertTrue(button1.exists, "The accessory panel must have a Previous button")
+        let button2 = app.buttons["swapButton"]
+        XCTAssertTrue(button2.exists, "The accessory panel must have a Swop button")
+        let button3 = app.buttons["nextButton"]
+        XCTAssertTrue(button3.exists, "The accessory panel must have a Next button")
+    }
+
+    func testKeyboardConfiguredCorrectly() throws {
+        let keyboard = app.otherElements["keyboard"]
+        XCTAssertTrue(keyboard.exists)
+        
+        for number in 0...9 {
+            let numberButton = app.buttons["numberButton\(number)"]
+            XCTAssertTrue(
+                numberButton.exists,
+                "The keyboard must have a button for the number \(number)"
+            )
         }
+        
+        let commaButton = app.buttons["commaButton"]
+        XCTAssertTrue(
+            commaButton.exists,
+            "The keyboard must have a comma button"
+        )
+
+        let deleteButton = app.buttons["deleteButton"]
+        XCTAssertTrue(
+            deleteButton.exists,
+            "The keyboard must have a delete button"
+        )
     }
 }
