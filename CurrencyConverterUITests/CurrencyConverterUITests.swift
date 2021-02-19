@@ -34,33 +34,43 @@ class ConverterViewControllerUITests: XCTestCase {
     func testCurrencyButtonsAreConfiguredCorrectly() throws {
         let firstCurrency = app.buttons["firstCurrency"]
         XCTAssertTrue(firstCurrency.exists)
-        XCTAssertEqual(
-            firstCurrency.frame.size.height,
-            120,
-            "The height of the first currency button must be 120"
-        )
-
         let secondCurrency = app.buttons["secondCurrency"]
         XCTAssertTrue(secondCurrency.exists)
-        XCTAssertEqual(
-            secondCurrency.frame.size.height,
-            120,
-            "The height of the second currency button must be 120"
-        )
     }
 
     func testAccessoryPanelConfiguredCorrectly() throws {
         let accessoryPanel = app.otherElements["accessoryPanel"]
         XCTAssertTrue(accessoryPanel.exists)
-        XCTAssertEqual(
-            accessoryPanel.frame.size.height,
-            60,
-            "The height of the accessory panel must be 60"
-        )
+        let button1 = app.buttons["previousButton"]
+        XCTAssertTrue(button1.exists, "The accessory panel must have a Previous button")
+        let button2 = app.buttons["swapButton"]
+        XCTAssertTrue(button2.exists, "The accessory panel must have a Swop button")
+        let button3 = app.buttons["nextButton"]
+        XCTAssertTrue(button3.exists, "The accessory panel must have a Next button")
     }
 
     func testKeyboardConfiguredCorrectly() throws {
         let keyboard = app.otherElements["keyboard"]
         XCTAssertTrue(keyboard.exists)
+        
+        for number in 0...9 {
+            let numberButton = app.buttons["numberButton\(number)"]
+            XCTAssertTrue(
+                numberButton.exists,
+                "The keyboard must have a button for the number \(number)"
+            )
+        }
+        
+        let commaButton = app.buttons["commaButton"]
+        XCTAssertTrue(
+            commaButton.exists,
+            "The keyboard must have a comma button"
+        )
+
+        let deleteButton = app.buttons["deleteButton"]
+        XCTAssertTrue(
+            deleteButton.exists,
+            "The keyboard must have a delete button"
+        )
     }
 }
