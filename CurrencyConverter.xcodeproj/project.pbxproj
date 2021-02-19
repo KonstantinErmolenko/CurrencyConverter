@@ -12,6 +12,8 @@
 		A97B0C9425DEB87200CC715A /* AccessoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C9325DEB87200CC715A /* AccessoryButton.swift */; };
 		A97FADFC25DD606F00319D84 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97FADFB25DD606F00319D84 /* KeyboardButton.swift */; };
 		A97FAE0125DD6B3900319D84 /* KeyboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */; };
+		A985C8FC25E01D350047A5F0 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A985C8FB25E01D350047A5F0 /* CurrencyButton.swift */; };
+		A985C90125E01DB80047A5F0 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A985C90025E01DB80047A5F0 /* Currency.swift */; };
 		A98DA18F25DC0AE20081D4BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA18E25DC0AE20081D4BB /* AppDelegate.swift */; };
 		A98DA19125DC0AE20081D4BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA19025DC0AE20081D4BB /* SceneDelegate.swift */; };
 		A98DA19325DC0AE20081D4BB /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA19225DC0AE20081D4BB /* ConverterViewController.swift */; };
@@ -46,6 +48,8 @@
 		A97B0C9325DEB87200CC715A /* AccessoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryButton.swift; sourceTree = "<group>"; };
 		A97FADFB25DD606F00319D84 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow.swift; sourceTree = "<group>"; };
+		A985C8FB25E01D350047A5F0 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
+		A985C90025E01DB80047A5F0 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		A98DA18B25DC0AE20081D4BB /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98DA18E25DC0AE20081D4BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A98DA19025DC0AE20081D4BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 				A98DA19925DC0AE20081D4BB /* LaunchScreen.storyboard */,
 				A97FADFA25DD605900319D84 /* Keyboard */,
 				A97B0C9225DEB85800CC715A /* AccessoryPanel */,
+				A985C8FB25E01D350047A5F0 /* CurrencyButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 		A98DA1D625DC1BA90081D4BB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A985C90025E01DB80047A5F0 /* Currency.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -339,11 +345,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A985C90125E01DB80047A5F0 /* Currency.swift in Sources */,
 				A97B0C9425DEB87200CC715A /* AccessoryButton.swift in Sources */,
 				A97FADFC25DD606F00319D84 /* KeyboardButton.swift in Sources */,
 				A97B0C8825DEB44100CC715A /* Colors.swift in Sources */,
 				A97FAE0125DD6B3900319D84 /* KeyboardRow.swift in Sources */,
 				A98DA19325DC0AE20081D4BB /* ConverterViewController.swift in Sources */,
+				A985C8FC25E01D350047A5F0 /* CurrencyButton.swift in Sources */,
 				A98DA18F25DC0AE20081D4BB /* AppDelegate.swift in Sources */,
 				A97B0C8E25DEB79300CC715A /* UIView+Ext.swift in Sources */,
 				A98DA1DB25DC31560081D4BB /* Keyboard.swift in Sources */,
