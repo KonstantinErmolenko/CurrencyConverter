@@ -9,38 +9,31 @@ import UIKit
 
 class ConverterViewController: UIViewController {
     
-    var firstCurrency: UIButton!
-    var secondCurrency: UIButton!
+    var currencyFromButton: CurrencyButton!
+    var currencyToButton: CurrencyButton!
     var accessoryPanel: AccessoryPanel!
     var keyboard: Keyboard!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        setValue()
     }
     
-    func configure() {
+    private func configure() {
         title = "Converter"
         view.backgroundColor = Colors.swatch3
         layoutElements()
     }
     
-    func layoutElements() {
-        firstCurrency = UIButton()
-        firstCurrency.backgroundColor = Colors.swatch4
-        firstCurrency.translatesAutoresizingMaskIntoConstraints = false
-        firstCurrency.accessibilityIdentifier = "firstCurrency"
-        firstCurrency.setTitle("USD", for: .normal)
-        firstCurrency.setTitleColor(Colors.swatch1, for: .normal)
-        view.addSubview(firstCurrency)
+    private func layoutElements() {
+        currencyFromButton = CurrencyButton(currency: Currencies.eur)
+        currencyFromButton.accessibilityIdentifier = "currencyFrom"
+        view.addSubview(currencyFromButton)
         
-        secondCurrency = UIButton()
-        secondCurrency.backgroundColor = Colors.swatch4
-        secondCurrency.translatesAutoresizingMaskIntoConstraints = false
-        secondCurrency.accessibilityIdentifier = "secondCurrency"
-        secondCurrency.setTitle("RUB", for: .normal)
-        secondCurrency.setTitleColor(Colors.swatch1, for: .normal)
-        view.addSubview(secondCurrency)
+        currencyToButton = CurrencyButton(currency: Currencies.rub)
+        currencyToButton.accessibilityIdentifier = "currencyTo"
+        view.addSubview(currencyToButton)
         
         accessoryPanel = AccessoryPanel()
         view.addSubview(accessoryPanel)
@@ -51,17 +44,17 @@ class ConverterViewController: UIViewController {
         let padding: CGFloat = 10
         let safeArea = view.safeAreaLayoutGuide
         let constraints = [
-            firstCurrency.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: padding),
-            firstCurrency.heightAnchor.constraint(equalTo: secondCurrency.heightAnchor),
-            firstCurrency.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: padding),
-            firstCurrency.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -padding),
+            currencyFromButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: padding),
+            currencyFromButton.heightAnchor.constraint(equalTo: currencyToButton.heightAnchor),
+            currencyFromButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: padding),
+            currencyFromButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -padding),
             
-            secondCurrency.topAnchor.constraint(equalTo: firstCurrency.bottomAnchor, constant: padding),
-            secondCurrency.bottomAnchor.constraint(equalTo: safeArea.centerYAnchor),
-            secondCurrency.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: padding),
-            secondCurrency.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -padding),
+            currencyToButton.topAnchor.constraint(equalTo: currencyFromButton.bottomAnchor, constant: padding),
+            currencyToButton.bottomAnchor.constraint(equalTo: safeArea.centerYAnchor),
+            currencyToButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: padding),
+            currencyToButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -padding),
             
-            accessoryPanel.topAnchor.constraint(equalTo: secondCurrency.bottomAnchor, constant: padding),
+            accessoryPanel.topAnchor.constraint(equalTo: currencyToButton.bottomAnchor, constant: padding),
             accessoryPanel.heightAnchor.constraint(equalTo: keyboard.heightAnchor, multiplier: 0.25),
             accessoryPanel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: padding),
             accessoryPanel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -padding),
@@ -72,5 +65,10 @@ class ConverterViewController: UIViewController {
             keyboard.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -padding),
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+
+    private func setValue() {
+        currencyFromButton.setValue(value: "809")
+        currencyToButton.setValue(value: "72662,03")
     }
 }
