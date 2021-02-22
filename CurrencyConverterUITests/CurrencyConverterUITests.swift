@@ -47,11 +47,11 @@ class ConverterViewControllerUITests: XCTestCase {
     }
    
     func testAllKeyboardButtonsAreHittable() throws {
-        for number in 0...9 {
-            let numberButton = app.buttons["numberButton\(number)"]
+        for digit in 0...9 {
+            let digitButton = app.buttons["digitButton\(digit)"]
             XCTAssertTrue(
-                numberButton.isHittable,
-                "The keyboard must have a button for the number \(number)"
+                digitButton.isHittable,
+                "The keyboard must have a button for the digit \(digit)"
             )
         }
         
@@ -73,40 +73,40 @@ class ConverterViewControllerUITests: XCTestCase {
         XCTAssertTrue(keyboard.exists)
 
         XCTAssertTrue(
-            horizontalPositionOfButtons (looksLike: "numberButton1", "numberButton2", "numberButton3"),
+            horizontalPositionOfButtons (looksLike: "digitButton1", "digitButton2", "digitButton3"),
             "The first row should look like 1, 2, 3"
         )
         XCTAssertTrue(
-            horizontalPositionOfButtons (looksLike: "numberButton4", "numberButton5", "numberButton6"),
+            horizontalPositionOfButtons (looksLike: "digitButton4", "digitButton5", "digitButton6"),
             "The second row should look like 4, 5, 6"
         )
         XCTAssertTrue(
-            horizontalPositionOfButtons (looksLike: "numberButton7", "numberButton8", "numberButton9"),
+            horizontalPositionOfButtons (looksLike: "digitButton7", "digitButton8", "digitButton9"),
             "The third row should look like 7, 8, 9"
         )
         XCTAssertTrue(
-            horizontalPositionOfButtons (looksLike: "commaButton", "numberButton0", "deleteButton"),
+            horizontalPositionOfButtons (looksLike: "commaButton", "digitButton0", "deleteButton"),
             "The fourth row should look like comma, 0, delete"
         )
         
         XCTAssertTrue(
-            verticalPositionOfButtons(looksLike: "numberButton1",
-                                                  "numberButton4",
-                                                  "numberButton7",
+            verticalPositionOfButtons(looksLike: "digitButton1",
+                                                  "digitButton4",
+                                                  "digitButton7",
                                                   "commaButton"),
             "The first column should look like 1, 4, 7, comma"
         )
         XCTAssertTrue(
-            verticalPositionOfButtons(looksLike: "numberButton2",
-                                                  "numberButton5",
-                                                  "numberButton8",
-                                                  "numberButton0"),
+            verticalPositionOfButtons(looksLike: "digitButton2",
+                                                  "digitButton5",
+                                                  "digitButton8",
+                                                  "digitButton0"),
             "The second column should look like 2, 5, 8, 0"
         )
         XCTAssertTrue(
-            verticalPositionOfButtons(looksLike: "numberButton3",
-                                                  "numberButton6",
-                                                  "numberButton9",
+            verticalPositionOfButtons(looksLike: "digitButton3",
+                                                  "digitButton6",
+                                                  "digitButton9",
                                                   "deleteButton"),
             "The third column should look like 3, 6, 9, delete"
         )

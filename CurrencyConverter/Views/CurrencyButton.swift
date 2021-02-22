@@ -67,7 +67,7 @@ class CurrencyButton: UIButton {
             valueLabel.trailingAnchor.constraint(equalTo: arrowView.leadingAnchor, constant: -padding),
             
             arrowView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            arrowView.heightAnchor.constraint(equalToConstant: 36),
+            arrowView.heightAnchor.constraint(equalToConstant: 26),
             arrowView.widthAnchor.constraint(equalTo: arrowView.heightAnchor),
             arrowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
         ]

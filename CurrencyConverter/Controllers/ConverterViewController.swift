@@ -9,21 +9,25 @@ import UIKit
 
 class ConverterViewController: UIViewController {
     
-    var currencyFromButton: CurrencyButton!
-    var currencyToButton: CurrencyButton!
-    var accessoryPanel: AccessoryPanel!
-    var keyboard: Keyboard!
+    private var currencyFromButton: CurrencyButton!
+    private var currencyToButton: CurrencyButton!
+    private var accessoryPanel: AccessoryPanel!
+    private var keyboard: Keyboard!
+    private var inputHandler: InputHandler!
+    private var currencyFromValue = "0"
+    private var currencyToValue = "0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        setValue()
+        setInitialValues()
     }
     
     private func configure() {
         title = "Converter"
         view.backgroundColor = Colors.swatch3
         layoutElements()
+        inputHandler = InputHandler()
     }
     
     private func layoutElements() {
@@ -38,7 +42,7 @@ class ConverterViewController: UIViewController {
         accessoryPanel = AccessoryPanel()
         view.addSubview(accessoryPanel)
 
-        keyboard = Keyboard()
+        keyboard = Keyboard(delegate: self)
         view.addSubview(keyboard)
 
         let padding: CGFloat = 10
@@ -67,8 +71,26 @@ class ConverterViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
 
-    private func setValue() {
-        currencyFromButton.setValue(value: "809")
-        currencyToButton.setValue(value: "72662,03")
+    private func setInitialValues() {
+        currencyFromButton.setValue(value: currencyFromValue)
+        currencyToButton.setValue(value: currencyToValue)
+    }
+}
+
+extension ConverterViewController: KeyboardDelegate {
+    
+    func addDigit(digit: String) {
+        currencyFromValue = inputHandler.addDigit(digit: digit, to: currencyFromValue)
+        currencyFromButton.setValue(value: currencyFromValue)
+    }
+    
+    func addComma() {
+        currencyFromValue = inputHandler.addComma(to: currencyFromValue)
+        currencyFromButton.setValue(value: currencyFromValue)
+    }
+    
+    func deleteSymbol() {
+        currencyFromValue = inputHandler.deleteSymbol(from: currencyFromValue)
+        currencyFromButton.setValue(value: currencyFromValue)
     }
 }
