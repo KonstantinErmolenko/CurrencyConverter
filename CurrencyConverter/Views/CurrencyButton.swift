@@ -7,19 +7,29 @@
 
 import UIKit
 
+protocol CurrencyButtonDelegate: AnyObject {
+    func buttonTapped(currency: Currency)
+}
+
 class CurrencyButton: UIButton {
+    var currency: Currency
+    weak var delegate: CurrencyButtonDelegate!
     
     private let signView: UIImageView!
     private let valueLabel: UILabel!
     private let arrowView: UIImageView!
 
-    init(currency: Currency) {
+    init(currency: Currency, delegate: CurrencyButtonDelegate) {
+        self.currency = currency
+        self.delegate = delegate
         
         signView = UIImageView(image: currency.signImage())
         valueLabel = UILabel()
-        arrowView = UIImageView(image: UIImage(systemName: "chevron.right"))
+        valueLabel.accessibilityIdentifier = "currencyValue"
+        arrowView = UIImageView(image: UIImage(systemName: "chevron.down"))
         
         super.init(frame: .zero)
+        
         configure(currency: currency)
         layoutElements()
     }
@@ -28,8 +38,17 @@ class CurrencyButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setCurrency(currency: Currency) {
+        self.currency = currency
+        signView.image = currency.signImage()
+    }
+    
     func setValue(value: String) {
         valueLabel.text = value
+    }
+    
+    func setRate(rate: Double) {
+        
     }
     
     private func configure(currency: Currency) {
@@ -67,7 +86,7 @@ class CurrencyButton: UIButton {
             valueLabel.trailingAnchor.constraint(equalTo: arrowView.leadingAnchor, constant: -padding),
             
             arrowView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            arrowView.heightAnchor.constraint(equalToConstant: 36),
+            arrowView.heightAnchor.constraint(equalToConstant: 26),
             arrowView.widthAnchor.constraint(equalTo: arrowView.heightAnchor),
             arrowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
         ]
@@ -75,22 +94,6 @@ class CurrencyButton: UIButton {
     }
     
     @objc private func buttonTapped(){
-        print("CurrencyButton tapped")
-    }
-}
-
-
-class SFImageView: UIImageView {
-    
-    init(image_: UIImage) {
-        super.init(frame: .zero)
-        image = image_
-        contentMode = .scaleAspectFit
-        translatesAutoresizingMaskIntoConstraints = false
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        delegate.buttonTapped(currency: currency)
     }
 }

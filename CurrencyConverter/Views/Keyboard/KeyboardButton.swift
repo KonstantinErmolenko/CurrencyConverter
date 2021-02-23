@@ -7,6 +7,15 @@
 
 import UIKit
 
+protocol KeyboardDigitButtonDelegate: AnyObject {
+    func addDigit(digit: String)
+}
+
+protocol KeyboardActionButtonDelegate: AnyObject {
+    func addComma()
+    func deleteSymbol()
+}
+
 class KeyboardButton: UIButton {
 
     init() {
@@ -27,12 +36,15 @@ class KeyboardButton: UIButton {
     }
 }
 
-class KeyboardNumberButton: KeyboardButton {
+class KeyboardDigitButton: KeyboardButton {
     
-    private let number: Int
+    let delegate: KeyboardDigitButtonDelegate
     
-    init(number: Int) {
-        self.number = number
+    private let digit: String
+    
+    init(digit: String, delegate: KeyboardDigitButtonDelegate) {
+        self.digit = digit
+        self.delegate = delegate
         super.init()
         configure()
     }
@@ -42,21 +54,29 @@ class KeyboardNumberButton: KeyboardButton {
     }
     
     private func configure() {
-        accessibilityIdentifier = "numberButton\(number)"
+        accessibilityIdentifier = "digitButton\(digit)"
         setupLabel()
+        addTarget(self, action: #selector(digitButtonTapped(_:)), for: .touchUpInside)
     }
     
     private func setupLabel() {
-        setTitle("\(number)", for: .normal)
+        setTitle("\(digit)", for: .normal)
+    }
+
+    @objc private func digitButtonTapped(_ sender: KeyboardDigitButton) {
+        delegate.addDigit(digit: sender.digit)
     }
 }
 
 class KeyboardActionButton: KeyboardButton {
     
-    let action: KeyboardAction
+    let delegate: KeyboardActionButtonDelegate
     
-    init(action: KeyboardAction) {
+    private let action: KeyboardAction
+    
+    init(action: KeyboardAction, delegate: KeyboardActionButtonDelegate) {
         self.action = action
+        self.delegate = delegate
         super.init()
         configure()
     }
@@ -69,27 +89,29 @@ class KeyboardActionButton: KeyboardButton {
         switch action {
         case .delete:
             accessibilityIdentifier = "deleteButton"
-            setupImage()
+            setupDeleteButtonImage()
         case .comma:
             accessibilityIdentifier = "commaButton"
             setupLabel()
         }
+        addTarget(self, action: #selector(actionButtonTapped(_:)), for: .touchUpInside)
     }
     
-    private func setupImage() {
-        let image: UIImage
-        switch action {
-        case .delete:
-            image = UIImage(systemName: "arrow.uturn.backward")!
+    @objc private func actionButtonTapped(_ sender: KeyboardActionButton) {
+        switch sender.action {
         case .comma:
-            image = UIImage(systemName: "number.circle.fill")!
+            delegate.addComma()
+        case .delete:
+            delegate.deleteSymbol()
         }
-        
+    }
+    
+    private func setupDeleteButtonImage() {
+        let image = UIImage(systemName: "delete.left")!
         self.setImage(image, for: .normal)
         imageView?.tintColor = Colors.accentColor
         imageView?.contentMode = .scaleAspectFit
-        
-        let config = UIImage.SymbolConfiguration(pointSize: 35)
+        let config = UIImage.SymbolConfiguration(pointSize: 26)
         setPreferredSymbolConfiguration(config, forImageIn: .normal)
     }
     
@@ -101,5 +123,4 @@ class KeyboardActionButton: KeyboardButton {
 enum KeyboardAction {
     case delete
     case comma
-
 }

@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A937A2FF25E528AE00B1731A /* CurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A937A2FE25E528AE00B1731A /* CurrenciesListViewController.swift */; };
 		A97B0C8825DEB44100CC715A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C8725DEB44100CC715A /* Colors.swift */; };
 		A97B0C8E25DEB79300CC715A /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C8D25DEB79300CC715A /* UIView+Ext.swift */; };
 		A97B0C9425DEB87200CC715A /* AccessoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C9325DEB87200CC715A /* AccessoryButton.swift */; };
+		A97D79F125E507C0004E7ABD /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D79F025E507C0004E7ABD /* Converter.swift */; };
+		A97D79F625E507E0004E7ABD /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D79F525E507E0004E7ABD /* ConverterTest.swift */; };
+		A97D7A0125E50C87004E7ABD /* ConverterViewControllerInputUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D7A0025E50C87004E7ABD /* ConverterViewControllerInputUITests.swift */; };
 		A97FADFC25DD606F00319D84 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97FADFB25DD606F00319D84 /* KeyboardButton.swift */; };
 		A97FAE0125DD6B3900319D84 /* KeyboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */; };
 		A985C8FC25E01D350047A5F0 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A985C8FB25E01D350047A5F0 /* CurrencyButton.swift */; };
@@ -19,10 +23,13 @@
 		A98DA19325DC0AE20081D4BB /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA19225DC0AE20081D4BB /* ConverterViewController.swift */; };
 		A98DA19825DC0AE20081D4BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A98DA19725DC0AE20081D4BB /* Assets.xcassets */; };
 		A98DA19B25DC0AE20081D4BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A98DA19925DC0AE20081D4BB /* LaunchScreen.storyboard */; };
-		A98DA1A625DC0AE30081D4BB /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA1A525DC0AE30081D4BB /* CurrencyConverterTests.swift */; };
 		A98DA1B125DC0AE30081D4BB /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA1B025DC0AE30081D4BB /* CurrencyConverterUITests.swift */; };
 		A98DA1DB25DC31560081D4BB /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA1DA25DC31560081D4BB /* Keyboard.swift */; };
 		A98DA1E025DC32CF0081D4BB /* AccessoryPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA1DF25DC32CF0081D4BB /* AccessoryPanel.swift */; };
+		A98E829925E56DF8005A80B3 /* SfConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98E829825E56DF8005A80B3 /* SfConfiguration.swift */; };
+		A98E82A225E57360005A80B3 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98E82A125E57360005A80B3 /* CurrencyCell.swift */; };
+		A992615125E3FAFD00E36255 /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A992615025E3FAFD00E36255 /* InputHandler.swift */; };
+		A992615925E4029700E36255 /* InputHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A992615825E4029700E36255 /* InputHandlerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,9 +50,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A937A2FE25E528AE00B1731A /* CurrenciesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewController.swift; sourceTree = "<group>"; };
 		A97B0C8725DEB44100CC715A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A97B0C8D25DEB79300CC715A /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		A97B0C9325DEB87200CC715A /* AccessoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryButton.swift; sourceTree = "<group>"; };
+		A97D79F025E507C0004E7ABD /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
+		A97D79F525E507E0004E7ABD /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
+		A97D7A0025E50C87004E7ABD /* ConverterViewControllerInputUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewControllerInputUITests.swift; sourceTree = "<group>"; };
 		A97FADFB25DD606F00319D84 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow.swift; sourceTree = "<group>"; };
 		A985C8FB25E01D350047A5F0 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
@@ -58,13 +69,16 @@
 		A98DA19A25DC0AE20081D4BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A98DA19C25DC0AE20081D4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A98DA1A125DC0AE30081D4BB /* CurrencyConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A98DA1A525DC0AE30081D4BB /* CurrencyConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterTests.swift; sourceTree = "<group>"; };
 		A98DA1A725DC0AE30081D4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A98DA1AC25DC0AE30081D4BB /* CurrencyConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98DA1B025DC0AE30081D4BB /* CurrencyConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITests.swift; sourceTree = "<group>"; };
 		A98DA1B225DC0AE30081D4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A98DA1DA25DC31560081D4BB /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		A98DA1DF25DC32CF0081D4BB /* AccessoryPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryPanel.swift; sourceTree = "<group>"; };
+		A98E829825E56DF8005A80B3 /* SfConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SfConfiguration.swift; sourceTree = "<group>"; };
+		A98E82A125E57360005A80B3 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		A992615025E3FAFD00E36255 /* InputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
+		A992615825E4029700E36255 /* InputHandlerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				A97B0C8725DEB44100CC715A /* Colors.swift */,
+				A98E829825E56DF8005A80B3 /* SfConfiguration.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -154,6 +169,7 @@
 				A98DA1D625DC1BA90081D4BB /* Models */,
 				A98DA1D425DC1B790081D4BB /* Views */,
 				A98DA1D525DC1B980081D4BB /* Controllers */,
+				A992614F25E3FAE600E36255 /* Services */,
 				A97B0C8625DEB42D00CC715A /* Constants */,
 				A97B0C8C25DEB78C00CC715A /* Extensions */,
 			);
@@ -163,7 +179,8 @@
 		A98DA1A425DC0AE30081D4BB /* CurrencyConverterTests */ = {
 			isa = PBXGroup;
 			children = (
-				A98DA1A525DC0AE30081D4BB /* CurrencyConverterTests.swift */,
+				A97D79F525E507E0004E7ABD /* ConverterTest.swift */,
+				A992615825E4029700E36255 /* InputHandlerTest.swift */,
 				A98DA1A725DC0AE30081D4BB /* Info.plist */,
 			);
 			path = CurrencyConverterTests;
@@ -172,6 +189,7 @@
 		A98DA1AF25DC0AE30081D4BB /* CurrencyConverterUITests */ = {
 			isa = PBXGroup;
 			children = (
+				A97D7A0025E50C87004E7ABD /* ConverterViewControllerInputUITests.swift */,
 				A98DA1B025DC0AE30081D4BB /* CurrencyConverterUITests.swift */,
 				A98DA1B225DC0AE30081D4BB /* Info.plist */,
 			);
@@ -204,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				A98DA19225DC0AE20081D4BB /* ConverterViewController.swift */,
+				A98E82A025E57341005A80B3 /* CurrenciesList */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -214,6 +233,24 @@
 				A985C90025E01DB80047A5F0 /* Currency.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A98E82A025E57341005A80B3 /* CurrenciesList */ = {
+			isa = PBXGroup;
+			children = (
+				A937A2FE25E528AE00B1731A /* CurrenciesListViewController.swift */,
+				A98E82A125E57360005A80B3 /* CurrencyCell.swift */,
+			);
+			path = CurrenciesList;
+			sourceTree = "<group>";
+		};
+		A992614F25E3FAE600E36255 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A992615025E3FAFD00E36255 /* InputHandler.swift */,
+				A97D79F025E507C0004E7ABD /* Converter.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,17 +383,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A985C90125E01DB80047A5F0 /* Currency.swift in Sources */,
+				A98E82A225E57360005A80B3 /* CurrencyCell.swift in Sources */,
 				A97B0C9425DEB87200CC715A /* AccessoryButton.swift in Sources */,
 				A97FADFC25DD606F00319D84 /* KeyboardButton.swift in Sources */,
 				A97B0C8825DEB44100CC715A /* Colors.swift in Sources */,
 				A97FAE0125DD6B3900319D84 /* KeyboardRow.swift in Sources */,
+				A97D79F125E507C0004E7ABD /* Converter.swift in Sources */,
 				A98DA19325DC0AE20081D4BB /* ConverterViewController.swift in Sources */,
+				A98E829925E56DF8005A80B3 /* SfConfiguration.swift in Sources */,
 				A985C8FC25E01D350047A5F0 /* CurrencyButton.swift in Sources */,
 				A98DA18F25DC0AE20081D4BB /* AppDelegate.swift in Sources */,
 				A97B0C8E25DEB79300CC715A /* UIView+Ext.swift in Sources */,
+				A937A2FF25E528AE00B1731A /* CurrenciesListViewController.swift in Sources */,
 				A98DA1DB25DC31560081D4BB /* Keyboard.swift in Sources */,
 				A98DA1E025DC32CF0081D4BB /* AccessoryPanel.swift in Sources */,
 				A98DA19125DC0AE20081D4BB /* SceneDelegate.swift in Sources */,
+				A992615125E3FAFD00E36255 /* InputHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +406,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A98DA1A625DC0AE30081D4BB /* CurrencyConverterTests.swift in Sources */,
+				A992615925E4029700E36255 /* InputHandlerTest.swift in Sources */,
+				A97D79F625E507E0004E7ABD /* ConverterTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A97D7A0125E50C87004E7ABD /* ConverterViewControllerInputUITests.swift in Sources */,
 				A98DA1B125DC0AE30081D4BB /* CurrencyConverterUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
