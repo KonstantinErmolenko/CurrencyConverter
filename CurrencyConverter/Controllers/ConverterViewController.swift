@@ -8,7 +8,6 @@
 import UIKit
 
 class ConverterViewController: UIViewController {
-    
     private var currencyFromButton: CurrencyButton!
     private var currencyToButton: CurrencyButton!
     private var accessoryPanel: AccessoryPanel!
@@ -19,7 +18,7 @@ class ConverterViewController: UIViewController {
     
     private var currencyFromValue = "0"
     private var currencyToValue = "0"
-    private var currencyRate = 90.98
+    private var currencyRate = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,26 +29,23 @@ class ConverterViewController: UIViewController {
     private func configure() {
         title = "Converter"
         view.backgroundColor = Colors.swatch3
-        layoutElements()
+        
+        currencyFromButton = CurrencyButton(currency: Currencies.eur, delegate: self)
+        currencyFromButton.accessibilityIdentifier = "currencyFrom"
+        currencyToButton = CurrencyButton(currency: Currencies.rub, delegate: self)
+        currencyToButton.accessibilityIdentifier = "currencyTo"
+        accessoryPanel = AccessoryPanel()
+        keyboard = Keyboard(delegate: self)
+        
+        configureAutoLayout()
+        
         inputHandler = InputHandler()
         converter = Converter()
     }
     
-    private func layoutElements() {
-        currencyFromButton = CurrencyButton(currency: Currencies.eur)
-        currencyFromButton.accessibilityIdentifier = "currencyFrom"
-        view.addSubview(currencyFromButton)
+    private func configureAutoLayout() {
+        view.addSubviews(currencyFromButton, currencyToButton, accessoryPanel, keyboard)
         
-        currencyToButton = CurrencyButton(currency: Currencies.rub)
-        currencyToButton.accessibilityIdentifier = "currencyTo"
-        view.addSubview(currencyToButton)
-        
-        accessoryPanel = AccessoryPanel()
-        view.addSubview(accessoryPanel)
-
-        keyboard = Keyboard(delegate: self)
-        view.addSubview(keyboard)
-
         let padding: CGFloat = 10
         let safeArea = view.safeAreaLayoutGuide
         let constraints = [
@@ -75,8 +71,9 @@ class ConverterViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(constraints)
     }
-
+    
     private func setInitialValues() {
+        currencyRate = 90.98
         currencyFromButton.setValue(value: currencyFromValue)
         currencyToButton.setValue(value: currencyToValue)
     }
@@ -87,10 +84,17 @@ class ConverterViewController: UIViewController {
         currencyToValue = inputHandler.convertToString(number: convertedValue)
         currencyToButton.setValue(value: currencyToValue)
     }
+    
+    private func swapCurrencies() {
+        let currencyFrom = currencyFromButton.currency
+        let currencyTo = currencyToButton.currency
+        
+        currencyFromButton.setCurrency(currency: currencyTo)
+        currencyToButton.setCurrency(currency: currencyFrom)
+    }
 }
 
 extension ConverterViewController: KeyboardDelegate {
-    
     func addDigit(digit: String) {
         currencyFromValue = inputHandler.addDigit(digit: digit, to: currencyFromValue)
         currencyFromButton.setValue(value: currencyFromValue)
@@ -106,5 +110,46 @@ extension ConverterViewController: KeyboardDelegate {
         currencyFromValue = inputHandler.deleteSymbol(from: currencyFromValue)
         currencyFromButton.setValue(value: currencyFromValue)
         calculateCurrencyToValue()
+    }
+}
+
+extension ConverterViewController: CurrencyButtonDelegate {  
+    func buttonTapped(currency: Currency) {
+        let listVC = CurrenciesListViewController()
+        listVC.delegate = self
+        listVC.currency = currency
+        
+        let navController = UINavigationController(rootViewController: listVC)
+        navController.modalPresentationStyle = .popover
+        present(navController, animated: true, completion: nil)
+    }
+}
+
+extension  ConverterViewController: CurrenciesListDelegate {
+    func changeCurrency(oldCurrency: Currency, newCurrency: Currency) {
+        let changedButton = currencyButtonById(id: oldCurrency.id)
+        let anotherButton = anotherCurrencyButton(id: oldCurrency.id)
+        
+        if newCurrency.id == anotherButton.currency.id {
+            swapCurrencies()
+        } else {
+            changedButton.setCurrency(currency: newCurrency)
+        }
+    }
+    
+    func currencyButtonById(id: String) -> CurrencyButton {
+        if currencyFromButton.currency.id == id {
+            return currencyFromButton
+        } else {
+            return currencyToButton
+        }
+    }
+    
+    func anotherCurrencyButton(id: String) -> CurrencyButton {
+        if currencyFromButton.currency.id != id {
+            return currencyFromButton
+        } else {
+            return currencyToButton
+        }
     }
 }

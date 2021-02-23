@@ -8,33 +8,32 @@
 import UIKit
 
 struct Currency {
-    let ID: String
+    let id: String
     let name: String
     let sign: String
     
     func signImage() -> UIImage? {
-        let configuration = UIImage.SymbolConfiguration(weight: .light)
-        return UIImage(systemName: sign, withConfiguration: configuration)
+        return UIImage(systemName: sign, withConfiguration: SfConfiguration.light)
     }
 }
 
 enum Currencies {
-    static let eur = Currency(ID: "EUR", name: "Euro", sign: "eurosign.circle")
-    static let rub = Currency(ID: "RUB", name: "Russian rouble", sign: "rublesign.circle")
+    static let eur = Currency(id: "EUR", name: "Euro", sign: "eurosign.circle")
+    static let rub = Currency(id: "RUB", name: "Russian rouble", sign: "rublesign.circle")
                
     static let all = [
-        Currency(ID: "USD", name: "US dollar", sign: "dollarsign.circle"),
-        Currency(ID: "EUR", name: "Euro", sign: "eurosign.circle"),
-        Currency(ID: "RUB", name: "Russian rouble", sign: "rublesign.circle"),
-        Currency(ID: "AUD", name: "Australian dollar", sign: "dollarsign.circle"),
-        Currency(ID: "NZD", name: "New Zealand dollar", sign: "dollarsign.circle"),
-        Currency(ID: "JPY", name: "Japanese yen", sign: "yensign.circle"),
-        Currency(ID: "CNY", name: "Chinese yuan renminbi", sign: "yensign.circle"),
-        Currency(ID: "GBP", name: "Pound sterling", sign: "sterlingsign.circle"),
-        Currency(ID: "CHF", name: "Swiss franc", sign: "francsign.circle"),
-        Currency(ID: "TRY", name: "Turkish lira", sign: "turkishlirasign.circle"),
-        Currency(ID: "IDR", name: "Indonesian rupiah", sign: "indianrupeesign.circle"),
-        Currency(ID: "MXN", name: "Mexican peso", sign: "pesosign.circle"),
-        Currency(ID: "KRW", name: "South Korean won", sign: "wonsign.circle"),
+        Currency(id: "USD", name: "US dollar", sign: "dollarsign.circle"),
+        Currency(id: "EUR", name: "Euro", sign: "eurosign.circle"),
+        Currency(id: "RUB", name: "Russian rouble", sign: "rublesign.circle"),
+        Currency(id: "AUD", name: "Australian dollar", sign: "dollarsign.circle"),
+        Currency(id: "NZD", name: "New Zealand dollar", sign: "dollarsign.circle"),
+        Currency(id: "JPY", name: "Japanese yen", sign: "yensign.circle"),
+        Currency(id: "CNY", name: "Chinese yuan renminbi", sign: "yensign.circle"),
+        Currency(id: "GBP", name: "Pound sterling", sign: "sterlingsign.circle"),
+        Currency(id: "CHF", name: "Swiss franc", sign: "francsign.circle"),
+        Currency(id: "TRY", name: "Turkish lira", sign: "turkishlirasign.circle"),
+        Currency(id: "IDR", name: "Indonesian rupiah", sign: "indianrupeesign.circle"),
+        Currency(id: "MXN", name: "Mexican peso", sign: "pesosign.circle"),
+        Currency(id: "KRW", name: "South Korean won", sign: "wonsign.circle"),
     ]
 }
