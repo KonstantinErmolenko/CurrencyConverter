@@ -38,14 +38,19 @@ final class InputHandler {
         }
     }
 
-    func formatValue(_ value: Double) -> String {
-        let formattedNumber = formatter.string(from: NSNumber(value: value)) ?? "0"
+    func convertToString(number: Double) -> String {
+        let formattedNumber = formatter.string(from: NSNumber(value: number)) ?? "0"
         return formattedNumber
     }
     
+    func convertToNumber(string: String) -> Double {
+        let number = formatter.number(from: string) ?? NSNumber(0.0)
+        return number.doubleValue
+    }
+
     private func configureFormatter() {
         formatter.decimalSeparator = ","
         formatter.numberStyle = .decimal
-
+        formatter.groupingSeparator = " "
     }
 }

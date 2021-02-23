@@ -68,12 +68,26 @@ class InputHandlerTest: XCTestCase {
     func testDeletingSymbolWorksCorrectly() {
         var number = "12,8"
         number = sut.deleteSymbol(from: number)
-        XCTAssertEqual(number, "12,", "Deletilg symbols is incorrect")
+        XCTAssertEqual(number, "12,", "Deleting symbols is incorrect")
     }
     
     func testDeletingLastSymbolWorksCorrectly() {
         var number = "1"
         number = sut.deleteSymbol(from: number)
-        XCTAssertEqual(number, "0", "Deletilg last symbols is incorrect")
+        XCTAssertEqual(number, "0", "Deleting last symbols is incorrect")
+    }
+    
+    // MARK: - Converting string to number
+    
+    func testConvertingFromStringToNumberWorksCorrectly() {
+        let str = "1 091,76"
+        let result = sut.convertToNumber(string: str)
+        XCTAssertEqual(result, 1091.76, "Converting string to number is incorrect")
+    }
+    
+    func testConvertingFromNumberToStringWorksCorrectly() {
+        let number = 1091.76
+        let result = sut.convertToString(number: number)
+        XCTAssertEqual(result, "1 091,76", "Converting number to string is incorrect")
     }
 }

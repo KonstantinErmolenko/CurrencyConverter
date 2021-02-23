@@ -10,6 +10,9 @@
 		A97B0C8825DEB44100CC715A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C8725DEB44100CC715A /* Colors.swift */; };
 		A97B0C8E25DEB79300CC715A /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C8D25DEB79300CC715A /* UIView+Ext.swift */; };
 		A97B0C9425DEB87200CC715A /* AccessoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B0C9325DEB87200CC715A /* AccessoryButton.swift */; };
+		A97D79F125E507C0004E7ABD /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D79F025E507C0004E7ABD /* Converter.swift */; };
+		A97D79F625E507E0004E7ABD /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D79F525E507E0004E7ABD /* ConverterTest.swift */; };
+		A97D7A0125E50C87004E7ABD /* ConverterViewControllerInputUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97D7A0025E50C87004E7ABD /* ConverterViewControllerInputUITests.swift */; };
 		A97FADFC25DD606F00319D84 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97FADFB25DD606F00319D84 /* KeyboardButton.swift */; };
 		A97FAE0125DD6B3900319D84 /* KeyboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */; };
 		A985C8FC25E01D350047A5F0 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A985C8FB25E01D350047A5F0 /* CurrencyButton.swift */; };
@@ -47,6 +50,9 @@
 		A97B0C8725DEB44100CC715A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A97B0C8D25DEB79300CC715A /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		A97B0C9325DEB87200CC715A /* AccessoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryButton.swift; sourceTree = "<group>"; };
+		A97D79F025E507C0004E7ABD /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
+		A97D79F525E507E0004E7ABD /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
+		A97D7A0025E50C87004E7ABD /* ConverterViewControllerInputUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewControllerInputUITests.swift; sourceTree = "<group>"; };
 		A97FADFB25DD606F00319D84 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow.swift; sourceTree = "<group>"; };
 		A985C8FB25E01D350047A5F0 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
@@ -166,6 +172,7 @@
 		A98DA1A425DC0AE30081D4BB /* CurrencyConverterTests */ = {
 			isa = PBXGroup;
 			children = (
+				A97D79F525E507E0004E7ABD /* ConverterTest.swift */,
 				A992615825E4029700E36255 /* InputHandlerTest.swift */,
 				A98DA1A725DC0AE30081D4BB /* Info.plist */,
 			);
@@ -175,6 +182,7 @@
 		A98DA1AF25DC0AE30081D4BB /* CurrencyConverterUITests */ = {
 			isa = PBXGroup;
 			children = (
+				A97D7A0025E50C87004E7ABD /* ConverterViewControllerInputUITests.swift */,
 				A98DA1B025DC0AE30081D4BB /* CurrencyConverterUITests.swift */,
 				A98DA1B225DC0AE30081D4BB /* Info.plist */,
 			);
@@ -223,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				A992615025E3FAFD00E36255 /* InputHandler.swift */,
+				A97D79F025E507C0004E7ABD /* Converter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -361,6 +370,7 @@
 				A97FADFC25DD606F00319D84 /* KeyboardButton.swift in Sources */,
 				A97B0C8825DEB44100CC715A /* Colors.swift in Sources */,
 				A97FAE0125DD6B3900319D84 /* KeyboardRow.swift in Sources */,
+				A97D79F125E507C0004E7ABD /* Converter.swift in Sources */,
 				A98DA19325DC0AE20081D4BB /* ConverterViewController.swift in Sources */,
 				A985C8FC25E01D350047A5F0 /* CurrencyButton.swift in Sources */,
 				A98DA18F25DC0AE20081D4BB /* AppDelegate.swift in Sources */,
@@ -377,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A992615925E4029700E36255 /* InputHandlerTest.swift in Sources */,
+				A97D79F625E507E0004E7ABD /* ConverterTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A97D7A0125E50C87004E7ABD /* ConverterViewControllerInputUITests.swift in Sources */,
 				A98DA1B125DC0AE30081D4BB /* CurrencyConverterUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

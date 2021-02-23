@@ -17,6 +17,7 @@ class CurrencyButton: UIButton {
         
         signView = UIImageView(image: currency.signImage())
         valueLabel = UILabel()
+        valueLabel.accessibilityIdentifier = "currencyValue"
         arrowView = UIImageView(image: UIImage(systemName: "chevron.right"))
         
         super.init(frame: .zero)

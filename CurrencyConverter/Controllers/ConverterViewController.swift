@@ -13,9 +13,13 @@ class ConverterViewController: UIViewController {
     private var currencyToButton: CurrencyButton!
     private var accessoryPanel: AccessoryPanel!
     private var keyboard: Keyboard!
+
     private var inputHandler: InputHandler!
+    private var converter: Converter!
+    
     private var currencyFromValue = "0"
     private var currencyToValue = "0"
+    private var currencyRate = 90.98
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,7 @@ class ConverterViewController: UIViewController {
         view.backgroundColor = Colors.swatch3
         layoutElements()
         inputHandler = InputHandler()
+        converter = Converter()
     }
     
     private func layoutElements() {
@@ -75,6 +80,13 @@ class ConverterViewController: UIViewController {
         currencyFromButton.setValue(value: currencyFromValue)
         currencyToButton.setValue(value: currencyToValue)
     }
+    
+    private func calculateCurrencyToValue() {
+        let numberValue = inputHandler.convertToNumber(string: currencyFromValue)
+        let convertedValue = converter.convert(amount: numberValue, byRate: currencyRate)
+        currencyToValue = inputHandler.convertToString(number: convertedValue)
+        currencyToButton.setValue(value: currencyToValue)
+    }
 }
 
 extension ConverterViewController: KeyboardDelegate {
@@ -82,6 +94,7 @@ extension ConverterViewController: KeyboardDelegate {
     func addDigit(digit: String) {
         currencyFromValue = inputHandler.addDigit(digit: digit, to: currencyFromValue)
         currencyFromButton.setValue(value: currencyFromValue)
+        calculateCurrencyToValue()
     }
     
     func addComma() {
@@ -92,5 +105,6 @@ extension ConverterViewController: KeyboardDelegate {
     func deleteSymbol() {
         currencyFromValue = inputHandler.deleteSymbol(from: currencyFromValue)
         currencyFromButton.setValue(value: currencyFromValue)
+        calculateCurrencyToValue()
     }
 }
