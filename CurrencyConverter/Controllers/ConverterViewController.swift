@@ -13,8 +13,8 @@ class ConverterViewController: UIViewController {
     private var accessoryPanel: AccessoryPanel!
     private var keyboard: Keyboard!
 
-    private var inputHandler: InputHandler!
-    private var converter: Converter!
+    private var inputHandler = InputHandler()
+    private var converter = Converter()
     
     private var currencyFromValue = "0"
     private var currencyToValue = "0"
@@ -30,17 +30,21 @@ class ConverterViewController: UIViewController {
         title = "Converter"
         view.backgroundColor = Colors.swatch3
         
-        currencyFromButton = CurrencyButton(currency: Currencies.eur, delegate: self)
-        currencyFromButton.accessibilityIdentifier = "currencyFrom"
-        currencyToButton = CurrencyButton(currency: Currencies.rub, delegate: self)
-        currencyToButton.accessibilityIdentifier = "currencyTo"
+        configureCurrencyButtons()
         accessoryPanel = AccessoryPanel()
+        accessoryPanel.delegate = self
         keyboard = Keyboard(delegate: self)
         
         configureAutoLayout()
+    }
+    
+    private func configureCurrencyButtons() {
+        let currencies = restoreCurrencies()
         
-        inputHandler = InputHandler()
-        converter = Converter()
+        currencyFromButton = CurrencyButton(currency: currencies.currencyFrom, delegate: self)
+        currencyFromButton.accessibilityIdentifier = "currencyFrom"
+        currencyToButton = CurrencyButton(currency: currencies.currencyTo, delegate: self)
+        currencyToButton.accessibilityIdentifier = "currencyTo"
     }
     
     private func configureAutoLayout() {
@@ -73,9 +77,28 @@ class ConverterViewController: UIViewController {
     }
     
     private func setInitialValues() {
-        currencyRate = 90.98
+        setCurrencyRate()
         currencyFromButton.setValue(value: currencyFromValue)
         currencyToButton.setValue(value: currencyToValue)
+    }
+    
+    private func restoreCurrencies() ->(currencyFrom: Currency, currencyTo: Currency){
+        return (currencyFrom: Currencies.eur, currencyTo: Currencies.rub)
+    }
+    
+    private func setCurrencyRate() {
+        currencyFromButton.startUpdatingRate()
+        currencyToButton.startUpdatingRate()
+        
+        let currency = currencyFromButton.currency
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            guard currency.id == self.currencyFromButton.currency.id else { return }
+            
+            self.currencyRate = 89.9219
+            self.currencyFromButton.setRate(rate: self.currencyRate)
+            self.currencyToButton.setRate(rate: 1.0/self.currencyRate)
+        }        
     }
     
     private func calculateCurrencyToValue() {
@@ -84,15 +107,9 @@ class ConverterViewController: UIViewController {
         currencyToValue = inputHandler.convertToString(number: convertedValue)
         currencyToButton.setValue(value: currencyToValue)
     }
-    
-    private func swapCurrencies() {
-        let currencyFrom = currencyFromButton.currency
-        let currencyTo = currencyToButton.currency
-        
-        currencyFromButton.setCurrency(currency: currencyTo)
-        currencyToButton.setCurrency(currency: currencyFrom)
-    }
 }
+
+// MARK: - KeyboardDelegate
 
 extension ConverterViewController: KeyboardDelegate {
     func addDigit(digit: String) {
@@ -113,6 +130,8 @@ extension ConverterViewController: KeyboardDelegate {
     }
 }
 
+// MARK: - CurrencyButtonDelegate
+
 extension ConverterViewController: CurrencyButtonDelegate {  
     func buttonTapped(currency: Currency) {
         let listVC = CurrenciesListViewController()
@@ -124,6 +143,8 @@ extension ConverterViewController: CurrencyButtonDelegate {
         present(navController, animated: true, completion: nil)
     }
 }
+
+// MARK: - CurrenciesListDelegate
 
 extension  ConverterViewController: CurrenciesListDelegate {
     func changeCurrency(oldCurrency: Currency, newCurrency: Currency) {
@@ -151,5 +172,61 @@ extension  ConverterViewController: CurrenciesListDelegate {
         } else {
             return currencyToButton
         }
+    }
+}
+
+// MARK: - AccessoryPanelDelegate
+
+extension ConverterViewController: AccessoryPanelDelegate {
+    func swapCurrencies() {
+        let currencyFrom = currencyFromButton.currency
+        let currencyTo = currencyToButton.currency
+        
+        currencyFromButton.setCurrency(currency: currencyTo)
+        currencyToButton.setCurrency(currency: currencyFrom)
+    }
+
+    func previousCurrency() {
+        let current = currencyFromButton.currency
+        guard let currentIndex = Currencies.all.firstIndex(where: { $0.id == current.id }) else {
+            return
+        }
+
+        var previous = getPreviousCurrency(forIndex: currentIndex)
+        if previous.currency.id == currencyToButton.currency.id {
+            previous = getPreviousCurrency(forIndex: previous.index)
+        }
+        currencyFromButton.setCurrency(currency: previous.currency)
+        setCurrencyRate()
+    }
+    
+    func nextCurrency() {
+        let current = currencyFromButton.currency
+        guard let currentIndex = Currencies.all.firstIndex(where: { $0.id == current.id }) else {
+            return
+        }
+
+        var next = getNextCurrency(forIndex: currentIndex)
+        if next.currency.id == currencyToButton.currency.id {
+            next = getNextCurrency(forIndex: next.index)
+        }
+        currencyFromButton.setCurrency(currency: next.currency)
+        setCurrencyRate()
+    }
+    
+    private func getPreviousCurrency(forIndex index: Int) -> (currency: Currency, index: Int) {
+        var previousIndex = index - 1
+        if previousIndex <= 0 {
+            previousIndex = Currencies.all.count - 1
+        }
+        return (currency: Currencies.all[previousIndex], index: previousIndex)
+    }
+    
+    private func getNextCurrency(forIndex index: Int) -> (currency: Currency, index: Int) {
+        var nextIndex = index + 1
+        if nextIndex > Currencies.all.count - 1 {
+            nextIndex = 0
+        }
+        return (currency: Currencies.all[nextIndex], index: nextIndex)
     }
 }

@@ -15,23 +15,21 @@ class CurrencyButton: UIButton {
     var currency: Currency
     weak var delegate: CurrencyButtonDelegate!
     
-    private let signView: UIImageView!
-    private let valueLabel: UILabel!
-    private let arrowView: UIImageView!
+    private let signView = UIImageView()
+    private let valueLabel = UILabel()
+    private let rateLabel = UILabel()
+    private let arrowView = UIImageView(image: UIImage(systemName: "chevron.down"))
+    
+    private var ai: UIActivityIndicatorView!
 
     init(currency: Currency, delegate: CurrencyButtonDelegate) {
         self.currency = currency
         self.delegate = delegate
         
-        signView = UIImageView(image: currency.signImage())
-        valueLabel = UILabel()
-        valueLabel.accessibilityIdentifier = "currencyValue"
-        arrowView = UIImageView(image: UIImage(systemName: "chevron.down"))
-        
         super.init(frame: .zero)
         
         configure(currency: currency)
-        layoutElements()
+        configureAutoLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -48,7 +46,34 @@ class CurrencyButton: UIButton {
     }
     
     func setRate(rate: Double) {
+        DispatchQueue.main.async {
+            if self.ai != nil {
+            self.ai.removeFromSuperview()
+                self.ai = nil
+            }
+            self.rateLabel.isHidden = false
+            self.rateLabel.text = "Rate: \(rate.string(maximumFractionDigits: 10))"
+        }
+    }
+    
+    func startUpdatingRate() {
+        guard ai == nil || !ai.isAnimating else { return }
         
+        rateLabel.isHidden = true
+        
+        ai = UIActivityIndicatorView()
+        addSubview(ai)
+        
+        ai.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            ai.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            ai.heightAnchor.constraint(equalToConstant: 30),
+            ai.widthAnchor.constraint(equalTo: ai.heightAnchor),
+            ai.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 21),
+        ]
+        NSLayoutConstraint.activate(constraints)
+        
+        ai.startAnimating()
     }
     
     private func configure(currency: Currency) {
@@ -62,30 +87,39 @@ class CurrencyButton: UIButton {
 
         signView.image = currency.signImage()
         signView.contentMode = .scaleAspectFit
-        
+
+        valueLabel.accessibilityIdentifier = "currencyValue"
         valueLabel.font = UIFont.systemFont(ofSize: 42, weight: .medium)
+        
+        rateLabel.isHidden = true
     }
 
-    private func layoutElements() {
-        addSubviews(signView, valueLabel, arrowView)
+    private func configureAutoLayout() {
+        addSubviews(signView, valueLabel, arrowView, rateLabel)
 
         signView.translatesAutoresizingMaskIntoConstraints = false
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         arrowView.translatesAutoresizingMaskIntoConstraints = false
+        rateLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let padding: CGFloat = 16
         let constraints = [
-            signView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            rateLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            rateLabel.heightAnchor.constraint(equalToConstant: 30),
+            rateLabel.trailingAnchor.constraint(equalTo: centerXAnchor),
+            rateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 21),
+            
+            signView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10),
             signView.heightAnchor.constraint(equalToConstant: 55),
             signView.widthAnchor.constraint(equalTo: signView.heightAnchor),
             signView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             
-            valueLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            valueLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10),
             valueLabel.heightAnchor.constraint(equalToConstant: 60),
             valueLabel.leadingAnchor.constraint(equalTo: signView.trailingAnchor, constant: 10),
             valueLabel.trailingAnchor.constraint(equalTo: arrowView.leadingAnchor, constant: -padding),
             
-            arrowView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            arrowView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10),
             arrowView.heightAnchor.constraint(equalToConstant: 26),
             arrowView.widthAnchor.constraint(equalTo: arrowView.heightAnchor),
             arrowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
@@ -93,7 +127,7 @@ class CurrencyButton: UIButton {
         NSLayoutConstraint.activate(constraints)
     }
     
-    @objc private func buttonTapped(){
+    @objc private func buttonTapped() {
         delegate.buttonTapped(currency: currency)
     }
 }
