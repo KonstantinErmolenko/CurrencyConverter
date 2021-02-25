@@ -33,7 +33,7 @@ class AccessoryButton: UIButton {
     }
     
     private func configure() {
-        backgroundColor = Colors.swatch3
+        backgroundColor = Colors.mainBackground
         translatesAutoresizingMaskIntoConstraints = false
         titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .light)
 

@@ -34,7 +34,7 @@ class CurrencyCell: UITableViewCell {
     }
     
     private func configue() {
-        signView.tintColor = Colors.swatch1
+        signView.tintColor = Colors.mainText
         checkmarkView.image = UIImage(systemName: "checkmark",
                                       withConfiguration: SfConfiguration.light)
         checkmarkView.tintColor = Colors.accentColor

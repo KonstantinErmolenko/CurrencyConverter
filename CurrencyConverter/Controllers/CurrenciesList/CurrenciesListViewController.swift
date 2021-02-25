@@ -23,7 +23,7 @@ class CurrenciesListViewController: UIViewController {
     }
     
     private func configure() {
-        view.backgroundColor = Colors.swatch3
+        view.backgroundColor = Colors.mainBackground
         navigationController?.navigationBar.tintColor = Colors.accentColor
         configureNavigationBar()
         configureTableView()
@@ -47,7 +47,7 @@ class CurrenciesListViewController: UIViewController {
         tableView.rowHeight = 60
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = Colors.swatch3
+        tableView.backgroundColor = Colors.mainBackground
         tableView.register(CurrencyCell.self, forCellReuseIdentifier: CurrencyCell.reuseId)
 
         view.addSubview(tableView)

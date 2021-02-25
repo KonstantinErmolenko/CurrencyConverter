@@ -27,7 +27,7 @@ class AccessoryPanel: UIView {
     }
     
     private func configure() {
-        backgroundColor = Colors.swatch3
+        backgroundColor = Colors.mainBackground
         accessibilityIdentifier = "accessoryPanel"
         translatesAutoresizingMaskIntoConstraints = false
         

@@ -28,7 +28,7 @@ class ConverterViewController: UIViewController {
     
     private func configure() {
         title = "Converter"
-        view.backgroundColor = Colors.swatch3
+        view.backgroundColor = Colors.mainBackground
         
         configureCurrencyButtons()
         accessoryPanel = AccessoryPanel()
@@ -184,6 +184,7 @@ extension ConverterViewController: AccessoryPanelDelegate {
         
         currencyFromButton.setCurrency(currency: currencyTo)
         currencyToButton.setCurrency(currency: currencyFrom)
+        setCurrencyRate()
     }
 
     func previousCurrency() {
