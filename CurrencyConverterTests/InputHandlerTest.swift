@@ -42,6 +42,11 @@ class InputHandlerTest: XCTestCase {
         XCTAssertEqual(number, "12,34", "Adding new digit to decimal number is incorrect")
     }
     
+    func testResultValueformattedCorrectly() {
+        var number = "100"
+        number = sut.addDigit(digit: "1", to: number)
+        XCTAssertEqual(number, "1 001", "Result formatted incorrectly")
+    }
     // MARK: - Adding comma
     
     func testAddingCommaToWholeNumberWorksCorrectly() {

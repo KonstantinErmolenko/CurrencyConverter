@@ -86,10 +86,14 @@ class CurrencyButton: UIButton {
         signView.image = currency.signImage()
         signView.contentMode = .scaleAspectFit
 
+        arrowView.contentMode = .scaleAspectFit
+        
         nameLabel.text = currency.name
         
         valueLabel.accessibilityIdentifier = "currencyValue"
         valueLabel.font = UIFont.systemFont(ofSize: 42, weight: .medium)
+        valueLabel.adjustsFontSizeToFitWidth = true
+        valueLabel.minimumScaleFactor = 0.4
         
         rateLabel.isHidden = true
     }
@@ -111,14 +115,14 @@ class CurrencyButton: UIButton {
             nameLabel.trailingAnchor.constraint(equalTo: valueLabel.trailingAnchor),
             
             signView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            signView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45),
+            signView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
             signView.widthAnchor.constraint(equalTo: signView.heightAnchor),
             signView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             
             valueLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             valueLabel.heightAnchor.constraint(equalTo: signView.heightAnchor),
-            valueLabel.leadingAnchor.constraint(equalTo: signView.trailingAnchor, constant: padding),
-            valueLabel.trailingAnchor.constraint(equalTo: arrowView.leadingAnchor, constant: -padding),
+            valueLabel.leadingAnchor.constraint(equalTo: signView.trailingAnchor, constant: 2*padding),
+            valueLabel.trailingAnchor.constraint(equalTo: arrowView.leadingAnchor, constant: -1.5*padding),
             
             rateLabel.leadingAnchor.constraint(equalTo: signView.leadingAnchor, constant: 2*padding),
             rateLabel.trailingAnchor.constraint(equalTo: valueLabel.trailingAnchor),
@@ -126,7 +130,7 @@ class CurrencyButton: UIButton {
             arrowView.centerYAnchor.constraint(equalTo: centerYAnchor),
             arrowView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
             arrowView.widthAnchor.constraint(equalTo: arrowView.heightAnchor),
-            arrowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            arrowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -1.5*padding),
         ]
         NSLayoutConstraint.activate(constraints)
     }

@@ -9,7 +9,7 @@ import Foundation
 
 final class InputHandler {
     
-    let formatter = NumberFormatter()
+    let numberFormatter = NumberFormatter()
     
     init() {
         configureFormatter()
@@ -18,9 +18,16 @@ final class InputHandler {
     func addDigit(digit: String, to number: String) -> String {
         if number == "0" {
             return digit
-        } else {
-            return "\(number)\(digit)"
         }
+            
+        let result = "\(number.replacingOccurrences(of: " ", with: ""))\(digit)"
+        
+        guard let nsNumber = numberFormatter.number(from: result),
+              let resultString = numberFormatter.string(from: nsNumber) else {
+            return "0"
+        }
+        
+        return resultString
     }
 
     func addComma(to number: String) -> String {
@@ -39,18 +46,19 @@ final class InputHandler {
     }
 
     func convertToString(number: Double) -> String {
-        let formattedNumber = formatter.string(from: NSNumber(value: number)) ?? "0"
+        let formattedNumber = numberFormatter.string(from: NSNumber(value: number)) ?? "0"
         return formattedNumber
     }
     
     func convertToNumber(string: String) -> Double {
-        let number = formatter.number(from: string) ?? NSNumber(0.0)
+        let number = numberFormatter.number(from: string) ?? NSNumber(0.0)
         return number.doubleValue
     }
 
     private func configureFormatter() {
-        formatter.decimalSeparator = ","
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = " "
+        numberFormatter.decimalSeparator = ","
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.groupingSeparator = " "
+        numberFormatter.maximumFractionDigits = 10
     }
 }
