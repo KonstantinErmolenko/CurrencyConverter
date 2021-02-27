@@ -7,8 +7,7 @@
 
 import Foundation
 
-final class Converter {
-    
+final class Converter {    
     func convert(amount: Double, byRate rate: Double) -> Double {
         return amount * rate
     }

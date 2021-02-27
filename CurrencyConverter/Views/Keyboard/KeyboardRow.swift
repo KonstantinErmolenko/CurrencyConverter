@@ -19,7 +19,7 @@ class KeyboardRow: UIStackView {
     }
     
     func configure() {
-        backgroundColor = Colors.swatch3
+        backgroundColor = Colors.mainBackground
         translatesAutoresizingMaskIntoConstraints = false
         spacing = 2
         axis = .horizontal

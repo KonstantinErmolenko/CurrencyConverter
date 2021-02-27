@@ -29,12 +29,12 @@ class ConverterViewControllerInputUITests: XCTestCase {
         app.buttons["digitButton1"].tap()
         
         XCTAssertEqual(currencyFrom.label, "1", "New value of the first currency must be 1")
-        XCTAssertEqual(currencyTo.label, "90,98", "New value of the first currency must be 90,98")
+        XCTAssertEqual(currencyTo.label, "89,9219", "New value of the first currency must be 89,9219")
         
         app.buttons["digitButton2"].tap()
         
         XCTAssertEqual(currencyFrom.label, "12", "New value of the first currency must be 12")
-        XCTAssertEqual(currencyTo.label, "1 091,76", "New value of the first currency must be 1 091,76")
+        XCTAssertEqual(currencyTo.label, "1 079,0628", "New value of the first currency must be 1 079,0628")
     }
     
     func testDeletingNuberInTheFirstCurrencyCalculatesTheValueOfTheSecondCurrency() {
@@ -48,11 +48,11 @@ class ConverterViewControllerInputUITests: XCTestCase {
         app.buttons["digitButton2"].tap()
         
         XCTAssertEqual(currencyFrom.label, "12", "New value of the first currency must be 12")
-        XCTAssertEqual(currencyTo.label, "1 091,76", "New value of the first currency must be 1 091,76")
+        XCTAssertEqual(currencyTo.label, "1 079,0628", "New value of the first currency must be 1 079,0628")
         
         app.buttons["deleteButton"].tap()
         XCTAssertEqual(currencyFrom.label, "1", "The value of the first currency after deleting the symbol must be 1")
-        XCTAssertEqual(currencyTo.label, "90,98", "The value of the second currency after deleting the symbol must be  90,98")
+        XCTAssertEqual(currencyTo.label, "89,9219", "The value of the second currency after deleting the symbol must be  89,9219")
        
         app.buttons["deleteButton"].tap()
         XCTAssertEqual(currencyFrom.label, "0", "The value of the first currency after deleting the symbol must be 0")

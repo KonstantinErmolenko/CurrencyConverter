@@ -7,9 +7,20 @@
 
 import UIKit
 
+protocol AccessoryButtonDelegate: AnyObject {
+    func accessoryButtonTapped(action: AccessoryActions)
+}
+
+enum AccessoryActions {
+    case previous
+    case swap
+    case next
+}
+
 class AccessoryButton: UIButton {
 
     let action: AccessoryActions
+    weak var delegate: AccessoryButtonDelegate?
     
     init(action: AccessoryActions) {
         self.action = action
@@ -22,10 +33,17 @@ class AccessoryButton: UIButton {
     }
     
     private func configure() {
-        backgroundColor = Colors.swatch3
+        backgroundColor = Colors.mainBackground
         translatesAutoresizingMaskIntoConstraints = false
         titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .light)
+
+        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
+        setupAccessibilityIdentifier()
+        setupImage()
+    }
+
+    private func setupAccessibilityIdentifier() {
         switch action {
         case .previous:
             accessibilityIdentifier = "previousButton"
@@ -34,7 +52,6 @@ class AccessoryButton: UIButton {
         case .next:
             accessibilityIdentifier = "nextButton"
         }
-        setupImage()
     }
     
     private func setupImage() {
@@ -57,10 +74,8 @@ class AccessoryButton: UIButton {
         let config = UIImage.SymbolConfiguration(pointSize: 35)
         setPreferredSymbolConfiguration(config, forImageIn: .normal)
     }
-}
 
-enum AccessoryActions {
-    case previous
-    case swap
-    case next
+    @objc private func buttonTapped() {
+        delegate?.accessoryButtonTapped(action: action)
+    }
 }

@@ -8,9 +8,9 @@
 import UIKit
 
 enum Colors {
-    static let swatch1 = UIColor.label
-    static let swatch2 = UIColor.secondaryLabel
-    static let swatch3 = UIColor.systemBackground
-    static let swatch4 = UIColor.secondarySystemBackground
+    static let mainText = UIColor.label
+    static let secondaryText = UIColor.secondaryLabel
+    static let mainBackground = UIColor.systemBackground
+    static let secondaryBackground = UIColor.secondarySystemBackground
     static let accentColor = UIColor.systemGreen
 }

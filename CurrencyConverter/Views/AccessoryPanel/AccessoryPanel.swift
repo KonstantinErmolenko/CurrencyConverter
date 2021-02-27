@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol AccessoryPanelDelegate: AnyObject {
+    func swapCurrencies()
+    func previousCurrency()
+    func nextCurrency()
+}
+
 class AccessoryPanel: UIView {
-    
+    weak var delegate: AccessoryPanelDelegate?
     private var stackView: UIStackView!
 
     init() {
@@ -20,21 +26,52 @@ class AccessoryPanel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure() {
+    private func configure() {
+        backgroundColor = Colors.mainBackground
         accessibilityIdentifier = "accessoryPanel"
-        backgroundColor = Colors.swatch3
         translatesAutoresizingMaskIntoConstraints = false
         
+        configureStackView()
+        configureAccessoryButtons()
+    }
+    
+    private func configureStackView() {
         stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 0
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         addSubview(stackView)
-        
-        stackView.addArrangedSubview(AccessoryButton(action: .previous))
-        stackView.addArrangedSubview(AccessoryButton(action: .swap))
-        stackView.addArrangedSubview(AccessoryButton(action: .next))
+
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.pinToEdges(of: self)
+    }
+    
+    private func configureAccessoryButtons() {
+        let previousButton = AccessoryButton(action: .previous)
+        previousButton.delegate = self
+        stackView.addArrangedSubview(previousButton)
+        
+        let swapButton = AccessoryButton(action: .swap)
+        swapButton.delegate = self
+        stackView.addArrangedSubview(swapButton)
+        
+        let nextButton = AccessoryButton(action: .next)
+        nextButton.delegate = self
+        stackView.addArrangedSubview(nextButton)
+    }
+}
+
+// MARK: - AccessoryButtonDelegate
+
+extension AccessoryPanel: AccessoryButtonDelegate {
+    func accessoryButtonTapped(action: AccessoryActions) {
+        switch action {
+        case .swap:
+            delegate?.swapCurrencies()
+        case .previous:
+            delegate?.previousCurrency()
+        case .next:
+            delegate?.nextCurrency()
+        }
     }
 }

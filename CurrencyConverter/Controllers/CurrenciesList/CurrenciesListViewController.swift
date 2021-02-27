@@ -23,7 +23,7 @@ class CurrenciesListViewController: UIViewController {
     }
     
     private func configure() {
-        view.backgroundColor = Colors.swatch3
+        view.backgroundColor = Colors.mainBackground
         navigationController?.navigationBar.tintColor = Colors.accentColor
         configureNavigationBar()
         configureTableView()
@@ -43,11 +43,11 @@ class CurrenciesListViewController: UIViewController {
     }
 
     private func configureTableView() {
-        let tableView = UITableView(frame: view.bounds, style: .grouped)
+        let tableView = UITableView(frame: view.bounds)
         tableView.rowHeight = 60
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = Colors.swatch3
+        tableView.backgroundColor = Colors.mainBackground
         tableView.register(CurrencyCell.self, forCellReuseIdentifier: CurrencyCell.reuseId)
 
         view.addSubview(tableView)
@@ -62,9 +62,9 @@ extension CurrenciesListViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyCell.reuseId) as! CurrencyCell
         
-        let currencyForRow = Currencies.all[indexPath.row]
-        let isSelected = currencyForRow.id == currency.id
-        cell.set(currency: currencyForRow, isSelected: isSelected)
+        let currencyInRow = Currencies.all[indexPath.row]
+        let isSelected = currencyInRow.id == currency.id
+        cell.set(currency: currencyInRow, isSelected: isSelected)
         
         return cell
     }

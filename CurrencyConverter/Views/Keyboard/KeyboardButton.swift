@@ -28,11 +28,11 @@ class KeyboardButton: UIButton {
     }
     
     private func configure() {
-        backgroundColor = Colors.swatch4
+        backgroundColor = Colors.secondaryBackground
         layer.cornerRadius = 6
         translatesAutoresizingMaskIntoConstraints = false
         titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .light)
-        setTitleColor(Colors.swatch1, for: .normal)
+        setTitleColor(Colors.mainText, for: .normal)
     }
 }
 

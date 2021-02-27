@@ -31,7 +31,7 @@ class Keyboard: UIView {
     
     func configure() {
         accessibilityIdentifier = "keyboard"
-        backgroundColor = Colors.swatch3
+        backgroundColor = Colors.mainBackground
         translatesAutoresizingMaskIntoConstraints = false
         configureStackView()
         configureKeyboard()
@@ -45,7 +45,7 @@ class Keyboard: UIView {
 
     private func configureStackView() {
         stackView = UIStackView()
-        stackView.backgroundColor = Colors.swatch3
+        stackView.backgroundColor = Colors.mainBackground
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 2
         stackView.axis = .vertical

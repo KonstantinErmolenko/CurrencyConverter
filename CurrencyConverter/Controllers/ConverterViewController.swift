@@ -13,8 +13,8 @@ class ConverterViewController: UIViewController {
     private var accessoryPanel: AccessoryPanel!
     private var keyboard: Keyboard!
 
-    private var inputHandler: InputHandler!
-    private var converter: Converter!
+    private var inputHandler = InputHandler()
+    private var converter = Converter()
     
     private var currencyFromValue = "0"
     private var currencyToValue = "0"
@@ -28,19 +28,23 @@ class ConverterViewController: UIViewController {
     
     private func configure() {
         title = "Converter"
-        view.backgroundColor = Colors.swatch3
+        view.backgroundColor = Colors.mainBackground
         
-        currencyFromButton = CurrencyButton(currency: Currencies.eur, delegate: self)
-        currencyFromButton.accessibilityIdentifier = "currencyFrom"
-        currencyToButton = CurrencyButton(currency: Currencies.rub, delegate: self)
-        currencyToButton.accessibilityIdentifier = "currencyTo"
+        configureCurrencyButtons()
         accessoryPanel = AccessoryPanel()
+        accessoryPanel.delegate = self
         keyboard = Keyboard(delegate: self)
         
         configureAutoLayout()
+    }
+    
+    private func configureCurrencyButtons() {
+        let currencies = restoreCurrencies()
         
-        inputHandler = InputHandler()
-        converter = Converter()
+        currencyFromButton = CurrencyButton(currency: currencies.currencyFrom, delegate: self)
+        currencyFromButton.accessibilityIdentifier = "currencyFrom"
+        currencyToButton = CurrencyButton(currency: currencies.currencyTo, delegate: self)
+        currencyToButton.accessibilityIdentifier = "currencyTo"
     }
     
     private func configureAutoLayout() {
@@ -73,32 +77,66 @@ class ConverterViewController: UIViewController {
     }
     
     private func setInitialValues() {
-        currencyRate = 90.98
+        setCurrencyRate()
         currencyFromButton.setValue(value: currencyFromValue)
         currencyToButton.setValue(value: currencyToValue)
     }
     
-    private func calculateCurrencyToValue() {
-        let numberValue = inputHandler.convertToNumber(string: currencyFromValue)
+    private func restoreCurrencies() ->(currencyFrom: Currency, currencyTo: Currency){
+        return (currencyFrom: Currencies.eur, currencyTo: Currencies.rub)
+    }
+    
+    private func setCurrencyRate() {
+        currencyFromButton.startUpdatingRate()
+        currencyToButton.startUpdatingRate()
+        
+        let exchange = CurrencyExchange(from: currencyFromButton.currency,
+                                        for: currencyToButton.currency)
+        
+        NetworkManager.shared.fetchCurrencyRate(exchange: exchange) { exchange, rate in
+            guard exchange.fromCurrency.id == self.currencyFromButton.currency.id else { return }
+            self.currencyRate = rate
+            self.currencyFromButton.setRate(rate: self.currencyRate,
+                                            toCurrency: exchange.forCurrency)
+            self.currencyToButton.setRate(rate: 1.0/self.currencyRate,
+                                          toCurrency: exchange.fromCurrency)            
+            self.convertEnteredValue()
+        }
+    }
+    
+    private func convertEnteredValue() {
+        let numberValue = inputHandler.convertToNumber(
+            string: currencyFromValue,
+            maximumFractionDigits: currencyFromButton.currency.fractionDigits
+        )
         let convertedValue = converter.convert(amount: numberValue, byRate: currencyRate)
-        currencyToValue = inputHandler.convertToString(number: convertedValue)
+        
+        currencyToValue = inputHandler.convertToString(
+            number: convertedValue,
+            maximumFractionDigits: currencyToButton.currency.fractionDigits
+        )
         currencyToButton.setValue(value: currencyToValue)
     }
     
-    private func swapCurrencies() {
-        let currencyFrom = currencyFromButton.currency
-        let currencyTo = currencyToButton.currency
-        
-        currencyFromButton.setCurrency(currency: currencyTo)
-        currencyToButton.setCurrency(currency: currencyFrom)
+    private func setFormatedNewEnteredValue(newValue: String) {
+        currencyFromValue = inputHandler.format(
+            string: newValue,
+            maximumFractionDigits: currencyFromButton.currency.fractionDigits
+        )
     }
 }
 
+// MARK: - KeyboardDelegate
+
 extension ConverterViewController: KeyboardDelegate {
     func addDigit(digit: String) {
-        currencyFromValue = inputHandler.addDigit(digit: digit, to: currencyFromValue)
+        let newValue = inputHandler.addDigit(
+            digit: digit,
+            to: currencyFromValue,
+            maximumFractionDigits: currencyFromButton.currency.fractionDigits)
+        setFormatedNewEnteredValue(newValue: newValue)
         currencyFromButton.setValue(value: currencyFromValue)
-        calculateCurrencyToValue()
+        convertEnteredValue()
     }
     
     func addComma() {
@@ -107,11 +145,14 @@ extension ConverterViewController: KeyboardDelegate {
     }
     
     func deleteSymbol() {
-        currencyFromValue = inputHandler.deleteSymbol(from: currencyFromValue)
+        let newValue = inputHandler.deleteSymbol(from: currencyFromValue)
+        setFormatedNewEnteredValue(newValue: newValue)
         currencyFromButton.setValue(value: currencyFromValue)
-        calculateCurrencyToValue()
+        convertEnteredValue()
     }
 }
+
+// MARK: - CurrencyButtonDelegate
 
 extension ConverterViewController: CurrencyButtonDelegate {  
     func buttonTapped(currency: Currency) {
@@ -125,31 +166,84 @@ extension ConverterViewController: CurrencyButtonDelegate {
     }
 }
 
+// MARK: - CurrenciesListDelegate
+
 extension  ConverterViewController: CurrenciesListDelegate {
     func changeCurrency(oldCurrency: Currency, newCurrency: Currency) {
-        let changedButton = currencyButtonById(id: oldCurrency.id)
-        let anotherButton = anotherCurrencyButton(id: oldCurrency.id)
+        guard let changedButton = getCurrencyButtonWithId(==, id: oldCurrency.id) else { return }
+        guard let anotherButton = getCurrencyButtonWithId(!=, id: oldCurrency.id) else { return }
         
         if newCurrency.id == anotherButton.currency.id {
             swapCurrencies()
         } else {
             changedButton.setCurrency(currency: newCurrency)
         }
+        setCurrencyRate()
     }
     
-    func currencyButtonById(id: String) -> CurrencyButton {
-        if currencyFromButton.currency.id == id {
-            return currencyFromButton
-        } else {
-            return currencyToButton
+    func getCurrencyButtonWithId(_ sign: (String?, String?) -> Bool, id: String) -> CurrencyButton? {
+        let buttons = [currencyFromButton!, currencyToButton!]
+        let result = buttons.filter { sign($0.currency.id, id) }.first
+     
+        return result
+    }
+}
+
+// MARK: - AccessoryPanelDelegate
+
+extension ConverterViewController: AccessoryPanelDelegate {
+    func swapCurrencies() {
+        let currencyFrom = currencyFromButton.currency
+        let currencyTo = currencyToButton.currency
+        
+        currencyFromButton.setCurrency(currency: currencyTo)
+        currencyToButton.setCurrency(currency: currencyFrom)
+        setFormatedNewEnteredValue(newValue: currencyFromValue)
+        currencyFromButton.setValue(value: currencyFromValue)
+        setCurrencyRate()
+    }
+
+    func previousCurrency() {
+        let current = currencyFromButton.currency
+        guard let currentIndex = Currencies.all.firstIndex(where: { $0.id == current.id }) else {
+            return
         }
+
+        var previous = getPreviousCurrency(forIndex: currentIndex)
+        if previous.currency.id == currencyToButton.currency.id {
+            previous = getPreviousCurrency(forIndex: previous.index)
+        }
+        currencyFromButton.setCurrency(currency: previous.currency)
+        setCurrencyRate()
     }
     
-    func anotherCurrencyButton(id: String) -> CurrencyButton {
-        if currencyFromButton.currency.id != id {
-            return currencyFromButton
-        } else {
-            return currencyToButton
+    func nextCurrency() {
+        let current = currencyFromButton.currency
+        guard let currentIndex = Currencies.all.firstIndex(where: { $0.id == current.id }) else {
+            return
         }
+
+        var next = getNextCurrency(forIndex: currentIndex)
+        if next.currency.id == currencyToButton.currency.id {
+            next = getNextCurrency(forIndex: next.index)
+        }
+        currencyFromButton.setCurrency(currency: next.currency)
+        setCurrencyRate()
+    }
+    
+    private func getPreviousCurrency(forIndex index: Int) -> (currency: Currency, index: Int) {
+        var previousIndex = index - 1
+        if previousIndex <= 0 {
+            previousIndex = Currencies.all.count - 1
+        }
+        return (currency: Currencies.all[previousIndex], index: previousIndex)
+    }
+    
+    private func getNextCurrency(forIndex index: Int) -> (currency: Currency, index: Int) {
+        var nextIndex = index + 1
+        if nextIndex > Currencies.all.count - 1 {
+            nextIndex = 0
+        }
+        return (currency: Currencies.all[nextIndex], index: nextIndex)
     }
 }
