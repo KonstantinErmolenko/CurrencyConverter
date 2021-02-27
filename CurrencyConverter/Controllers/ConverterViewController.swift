@@ -105,14 +105,24 @@ class ConverterViewController: UIViewController {
     }
     
     private func convertEnteredValue() {
-        let numberValue = inputHandler.convertToNumber(string: currencyFromValue,
-                                                       maximumFractionDigits: 10)
+        let numberValue = inputHandler.convertToNumber(
+            string: currencyFromValue,
+            maximumFractionDigits: currencyFromButton.currency.fractionDigits
+        )
         let convertedValue = converter.convert(amount: numberValue, byRate: currencyRate)
         
-        let fractionDigits = currencyToButton.currency.fractionDigits
-        currencyToValue = inputHandler.convertToString(number: convertedValue,
-                                                       maximumFractionDigits: fractionDigits)
+        currencyToValue = inputHandler.convertToString(
+            number: convertedValue,
+            maximumFractionDigits: currencyToButton.currency.fractionDigits
+        )
         currencyToButton.setValue(value: currencyToValue)
+    }
+    
+    private func setFormatedNewEnteredValue(newValue: String) {
+        currencyFromValue = inputHandler.format(
+            string: newValue,
+            maximumFractionDigits: currencyFromButton.currency.fractionDigits
+        )
     }
 }
 
@@ -124,7 +134,7 @@ extension ConverterViewController: KeyboardDelegate {
             digit: digit,
             to: currencyFromValue,
             maximumFractionDigits: currencyFromButton.currency.fractionDigits)
-        currencyFromValue = inputHandler.format(string: newValue)
+        setFormatedNewEnteredValue(newValue: newValue)
         currencyFromButton.setValue(value: currencyFromValue)
         convertEnteredValue()
     }
@@ -136,7 +146,7 @@ extension ConverterViewController: KeyboardDelegate {
     
     func deleteSymbol() {
         let newValue = inputHandler.deleteSymbol(from: currencyFromValue)
-        currencyFromValue = inputHandler.format(string: newValue)
+        setFormatedNewEnteredValue(newValue: newValue)
         currencyFromButton.setValue(value: currencyFromValue)
         convertEnteredValue()
     }
@@ -188,6 +198,8 @@ extension ConverterViewController: AccessoryPanelDelegate {
         
         currencyFromButton.setCurrency(currency: currencyTo)
         currencyToButton.setCurrency(currency: currencyFrom)
+        setFormatedNewEnteredValue(newValue: currencyFromValue)
+        currencyFromButton.setValue(value: currencyFromValue)
         setCurrencyRate()
     }
 

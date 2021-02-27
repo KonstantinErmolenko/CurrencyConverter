@@ -19,9 +19,14 @@ final class InputHandler {
             return digit
         }
         
-        numberFormatter.maximumFractionDigits = maximumFractionDigits
+        guard numberOfFractionDigitsIsNotExceeded(
+                number: number,
+                maximumFractionDigits: maximumFractionDigits) else {
+            return number
+        }
         let result = "\(number.removeSpaces())\(digit)"
         
+        numberFormatter.maximumFractionDigits = maximumFractionDigits
         guard let nsNumber = numberFormatter.number(from: result),
               let resultString = numberFormatter.string(from: nsNumber) else {
             return "0"
@@ -45,19 +50,20 @@ final class InputHandler {
         }
     }
 
-    func convertToString(number: Double, maximumFractionDigits: Int = 2) -> String {
+    func convertToString(number: Double, maximumFractionDigits: Int) -> String {
         numberFormatter.maximumFractionDigits = maximumFractionDigits
         let formattedNumber = numberFormatter.string(from: NSNumber(value: number)) ?? "0"
         return formattedNumber
     }
     
-    func convertToNumber(string: String, maximumFractionDigits: Int = 2) -> Double {
+    func convertToNumber(string: String, maximumFractionDigits: Int) -> Double {
         numberFormatter.maximumFractionDigits = maximumFractionDigits
         let number = numberFormatter.number(from: string.removeSpaces()) ?? NSNumber(0.0)
         return number.doubleValue
     }
 
-    func format(string: String) -> String {
+    func format(string: String, maximumFractionDigits: Int) -> String {
+        numberFormatter.maximumFractionDigits = maximumFractionDigits
         guard let nsNumber = numberFormatter.number(from: string.removeSpaces()),
               let resultString = numberFormatter.string(from: nsNumber) else {
             return "0"
@@ -69,5 +75,15 @@ final class InputHandler {
         numberFormatter.decimalSeparator = ","
         numberFormatter.numberStyle = .decimal
         numberFormatter.groupingSeparator = " "
+    }
+    
+    private func numberOfFractionDigitsIsNotExceeded (number: String, maximumFractionDigits: Int) -> Bool {
+        guard number.contains(",") else { return true }
+        let splited = number.split(separator: ",")
+
+        guard splited.count == 2 else { return true }
+        let numberFractionDigits = splited.last?.count ?? 0
+
+        return numberFractionDigits < maximumFractionDigits
     }
 }

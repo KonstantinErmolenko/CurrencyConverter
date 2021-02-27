@@ -50,15 +50,23 @@ class InputHandlerTest: XCTestCase {
     
     func testAddingDigitTakesIntoAccountTheNumberOfFractionDigitsForTheCurrency() {
         var number = "12,34"
-        number = sut.addDigit(digit: "5",
+        number = sut.addDigit(digit: "8",
                               to: number,
                               maximumFractionDigits: 2)
         XCTAssertEqual(number, "12,34", "Adding new digit doesn't take into account the number of decimal places for the currency")
         
-        number = sut.addDigit(digit: "5",
+        number = sut.addDigit(digit: "8",
                               to: number,
                               maximumFractionDigits: 3)
-        XCTAssertEqual(number, "12,345", "Adding new digit doesn't take into account the number of decimal places for the currency")
+        XCTAssertEqual(number, "12,348", "Adding new digit doesn't take into account the number of decimal places for the currency")
+    }
+    
+    func testAddingFirstDigitAfterCommaWorksCorrectly() {
+        var number = "12,"
+        number = sut.addDigit(digit: "3",
+                              to: number,
+                              maximumFractionDigits: 2)
+        XCTAssertEqual(number, "12,3", "Adding new digit after comma is incorrect")
     }
     
     // MARK: - Adding comma
