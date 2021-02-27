@@ -18,6 +18,8 @@
 		A97FAE0125DD6B3900319D84 /* KeyboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */; };
 		A985C8FC25E01D350047A5F0 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A985C8FB25E01D350047A5F0 /* CurrencyButton.swift */; };
 		A985C90125E01DB80047A5F0 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A985C90025E01DB80047A5F0 /* Currency.swift */; };
+		A98A0F9025E80AF7005F5ED1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98A0F8F25E80AF7005F5ED1 /* NetworkManager.swift */; };
+		A98A0F9525E80CCC005F5ED1 /* CurrencyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98A0F9425E80CCC005F5ED1 /* CurrencyExchange.swift */; };
 		A98DA18F25DC0AE20081D4BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA18E25DC0AE20081D4BB /* AppDelegate.swift */; };
 		A98DA19125DC0AE20081D4BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA19025DC0AE20081D4BB /* SceneDelegate.swift */; };
 		A98DA19325DC0AE20081D4BB /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DA19225DC0AE20081D4BB /* ConverterViewController.swift */; };
@@ -31,6 +33,7 @@
 		A98E82B325E584CC005A80B3 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98E82B225E584CC005A80B3 /* Double+Ext.swift */; };
 		A992615125E3FAFD00E36255 /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A992615025E3FAFD00E36255 /* InputHandler.swift */; };
 		A992615925E4029700E36255 /* InputHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A992615825E4029700E36255 /* InputHandlerTest.swift */; };
+		A9A564CB25E826C4005385FA /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A564CA25E826C4005385FA /* String+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,8 @@
 		A97FAE0025DD6B3900319D84 /* KeyboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow.swift; sourceTree = "<group>"; };
 		A985C8FB25E01D350047A5F0 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
 		A985C90025E01DB80047A5F0 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		A98A0F8F25E80AF7005F5ED1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A98A0F9425E80CCC005F5ED1 /* CurrencyExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchange.swift; sourceTree = "<group>"; };
 		A98DA18B25DC0AE20081D4BB /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98DA18E25DC0AE20081D4BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A98DA19025DC0AE20081D4BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +86,7 @@
 		A98E82B225E584CC005A80B3 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		A992615025E3FAFD00E36255 /* InputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
 		A992615825E4029700E36255 /* InputHandlerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerTest.swift; sourceTree = "<group>"; };
+		A9A564CA25E826C4005385FA /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				A97B0C8D25DEB79300CC715A /* UIView+Ext.swift */,
+				A9A564CA25E826C4005385FA /* String+Ext.swift */,
 				A98E82B225E584CC005A80B3 /* Double+Ext.swift */,
 			);
 			path = Extensions;
@@ -234,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				A985C90025E01DB80047A5F0 /* Currency.swift */,
+				A98A0F9425E80CCC005F5ED1 /* CurrencyExchange.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				A992615025E3FAFD00E36255 /* InputHandler.swift */,
+				A98A0F8F25E80AF7005F5ED1 /* NetworkManager.swift */,
 				A97D79F025E507C0004E7ABD /* Converter.swift */,
 			);
 			path = Services;
@@ -385,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A98A0F9025E80AF7005F5ED1 /* NetworkManager.swift in Sources */,
 				A985C90125E01DB80047A5F0 /* Currency.swift in Sources */,
 				A98E82A225E57360005A80B3 /* CurrencyCell.swift in Sources */,
 				A97B0C9425DEB87200CC715A /* AccessoryButton.swift in Sources */,
@@ -395,9 +405,11 @@
 				A98DA19325DC0AE20081D4BB /* ConverterViewController.swift in Sources */,
 				A98E82B325E584CC005A80B3 /* Double+Ext.swift in Sources */,
 				A98E829925E56DF8005A80B3 /* SfConfiguration.swift in Sources */,
+				A98A0F9525E80CCC005F5ED1 /* CurrencyExchange.swift in Sources */,
 				A985C8FC25E01D350047A5F0 /* CurrencyButton.swift in Sources */,
 				A98DA18F25DC0AE20081D4BB /* AppDelegate.swift in Sources */,
 				A97B0C8E25DEB79300CC715A /* UIView+Ext.swift in Sources */,
+				A9A564CB25E826C4005385FA /* String+Ext.swift in Sources */,
 				A937A2FF25E528AE00B1731A /* CurrenciesListViewController.swift in Sources */,
 				A98DA1DB25DC31560081D4BB /* Keyboard.swift in Sources */,
 				A98DA1E025DC32CF0081D4BB /* AccessoryPanel.swift in Sources */,

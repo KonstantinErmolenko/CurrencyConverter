@@ -44,17 +44,24 @@ class CurrencyButton: UIButton {
     }
     
     func setValue(value: String) {
-        valueLabel.text = value
+        DispatchQueue.main.async {
+            self.valueLabel.text = value
+        }
     }
     
-    func setRate(rate: Double) {
+    func setRate(rate: Double, toCurrency: Currency) {
         DispatchQueue.main.async {
-            if self.activityIndicator != nil {
-            self.activityIndicator.removeFromSuperview()
-                self.activityIndicator = nil
-            }
+            self.deactivateActivityIndicator()
             self.rateLabel.isHidden = false
-            self.rateLabel.text = "Rate: \(rate.string(maximumFractionDigits: 10))"
+            let rateFormatted = rate.string(maximumFractionDigits: 4)
+            self.rateLabel.text = "1 \(self.currency.id) = \(rateFormatted) \(toCurrency.id)"
+        }
+    }
+    
+    private func deactivateActivityIndicator() {
+        if self.activityIndicator != nil {
+            self.activityIndicator.removeFromSuperview()
+            self.activityIndicator = nil
         }
     }
     

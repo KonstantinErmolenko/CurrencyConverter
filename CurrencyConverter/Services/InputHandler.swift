@@ -8,19 +8,19 @@
 import Foundation
 
 final class InputHandler {
-    
     let numberFormatter = NumberFormatter()
     
     init() {
         configureFormatter()
     }
     
-    func addDigit(digit: String, to number: String) -> String {
+    func addDigit(digit: String, to number: String, maximumFractionDigits: Int) -> String {
         if number == "0" {
             return digit
         }
-            
-        let result = "\(number.replacingOccurrences(of: " ", with: ""))\(digit)"
+        
+        numberFormatter.maximumFractionDigits = maximumFractionDigits
+        let result = "\(number.removeSpaces())\(digit)"
         
         guard let nsNumber = numberFormatter.number(from: result),
               let resultString = numberFormatter.string(from: nsNumber) else {
@@ -45,20 +45,29 @@ final class InputHandler {
         }
     }
 
-    func convertToString(number: Double) -> String {
+    func convertToString(number: Double, maximumFractionDigits: Int = 2) -> String {
+        numberFormatter.maximumFractionDigits = maximumFractionDigits
         let formattedNumber = numberFormatter.string(from: NSNumber(value: number)) ?? "0"
         return formattedNumber
     }
     
-    func convertToNumber(string: String) -> Double {
-        let number = numberFormatter.number(from: string) ?? NSNumber(0.0)
+    func convertToNumber(string: String, maximumFractionDigits: Int = 2) -> Double {
+        numberFormatter.maximumFractionDigits = maximumFractionDigits
+        let number = numberFormatter.number(from: string.removeSpaces()) ?? NSNumber(0.0)
         return number.doubleValue
     }
 
+    func format(string: String) -> String {
+        guard let nsNumber = numberFormatter.number(from: string.removeSpaces()),
+              let resultString = numberFormatter.string(from: nsNumber) else {
+            return "0"
+        }
+        return resultString
+    }
+    
     private func configureFormatter() {
         numberFormatter.decimalSeparator = ","
         numberFormatter.numberStyle = .decimal
         numberFormatter.groupingSeparator = " "
-        numberFormatter.maximumFractionDigits = 10
     }
 }

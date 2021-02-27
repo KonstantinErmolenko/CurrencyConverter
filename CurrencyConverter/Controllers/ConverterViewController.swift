@@ -90,21 +90,28 @@ class ConverterViewController: UIViewController {
         currencyFromButton.startUpdatingRate()
         currencyToButton.startUpdatingRate()
         
-        let currency = currencyFromButton.currency
+        let exchange = CurrencyExchange(from: currencyFromButton.currency,
+                                        for: currencyToButton.currency)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            guard currency.id == self.currencyFromButton.currency.id else { return }
-            
-            self.currencyRate = 89.9219
-            self.currencyFromButton.setRate(rate: self.currencyRate)
-            self.currencyToButton.setRate(rate: 1.0/self.currencyRate)
-        }        
+        NetworkManager.shared.fetchCurrencyRate(exchange: exchange) { exchange, rate in
+            guard exchange.fromCurrency.id == self.currencyFromButton.currency.id else { return }
+            self.currencyRate = rate
+            self.currencyFromButton.setRate(rate: self.currencyRate,
+                                            toCurrency: exchange.forCurrency)
+            self.currencyToButton.setRate(rate: 1.0/self.currencyRate,
+                                          toCurrency: exchange.fromCurrency)            
+            self.convertEnteredValue()
+        }
     }
     
-    private func calculateCurrencyToValue() {
-        let numberValue = inputHandler.convertToNumber(string: currencyFromValue)
+    private func convertEnteredValue() {
+        let numberValue = inputHandler.convertToNumber(string: currencyFromValue,
+                                                       maximumFractionDigits: 10)
         let convertedValue = converter.convert(amount: numberValue, byRate: currencyRate)
-        currencyToValue = inputHandler.convertToString(number: convertedValue)
+        
+        let fractionDigits = currencyToButton.currency.fractionDigits
+        currencyToValue = inputHandler.convertToString(number: convertedValue,
+                                                       maximumFractionDigits: fractionDigits)
         currencyToButton.setValue(value: currencyToValue)
     }
 }
@@ -113,9 +120,13 @@ class ConverterViewController: UIViewController {
 
 extension ConverterViewController: KeyboardDelegate {
     func addDigit(digit: String) {
-        currencyFromValue = inputHandler.addDigit(digit: digit, to: currencyFromValue)
+        let newValue = inputHandler.addDigit(
+            digit: digit,
+            to: currencyFromValue,
+            maximumFractionDigits: currencyFromButton.currency.fractionDigits)
+        currencyFromValue = inputHandler.format(string: newValue)
         currencyFromButton.setValue(value: currencyFromValue)
-        calculateCurrencyToValue()
+        convertEnteredValue()
     }
     
     func addComma() {
@@ -124,9 +135,10 @@ extension ConverterViewController: KeyboardDelegate {
     }
     
     func deleteSymbol() {
-        currencyFromValue = inputHandler.deleteSymbol(from: currencyFromValue)
+        let newValue = inputHandler.deleteSymbol(from: currencyFromValue)
+        currencyFromValue = inputHandler.format(string: newValue)
         currencyFromButton.setValue(value: currencyFromValue)
-        calculateCurrencyToValue()
+        convertEnteredValue()
     }
 }
 
@@ -148,30 +160,22 @@ extension ConverterViewController: CurrencyButtonDelegate {
 
 extension  ConverterViewController: CurrenciesListDelegate {
     func changeCurrency(oldCurrency: Currency, newCurrency: Currency) {
-        let changedButton = currencyButtonById(id: oldCurrency.id)
-        let anotherButton = anotherCurrencyButton(id: oldCurrency.id)
+        guard let changedButton = getCurrencyButtonWithId(==, id: oldCurrency.id) else { return }
+        guard let anotherButton = getCurrencyButtonWithId(!=, id: oldCurrency.id) else { return }
         
         if newCurrency.id == anotherButton.currency.id {
             swapCurrencies()
         } else {
             changedButton.setCurrency(currency: newCurrency)
         }
+        setCurrencyRate()
     }
     
-    func currencyButtonById(id: String) -> CurrencyButton {
-        if currencyFromButton.currency.id == id {
-            return currencyFromButton
-        } else {
-            return currencyToButton
-        }
-    }
-    
-    func anotherCurrencyButton(id: String) -> CurrencyButton {
-        if currencyFromButton.currency.id != id {
-            return currencyFromButton
-        } else {
-            return currencyToButton
-        }
+    func getCurrencyButtonWithId(_ sign: (String?, String?) -> Bool, id: String) -> CurrencyButton? {
+        let buttons = [currencyFromButton!, currencyToButton!]
+        let result = buttons.filter { sign($0.currency.id, id) }.first
+     
+        return result
     }
 }
 
