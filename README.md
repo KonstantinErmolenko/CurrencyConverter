@@ -1,7 +1,13 @@
 # Currency Converter
 
-![Preview 1](https://github.com/KonstantinErmolenko/CurrencyConverter/blob/main/Preview/preview-1.png)
+## Conversion by exchange rate  
 
-![Preview 1](https://github.com/KonstantinErmolenko/CurrencyConverter/blob/main/Preview/preview-2.png)
+<img src="https://github.com/KonstantinErmolenko/CurrencyConverter/blob/main/Preview/preview-1.png" width="207" height="448">
 
-![Preview 1](https://github.com/KonstantinErmolenko/CurrencyConverter/blob/main/Preview/preview-3.png)
+## Swap currencies
+
+<img src="https://github.com/KonstantinErmolenko/CurrencyConverter/blob/main/Preview/preview-3.png" width="207" height="448">
+
+## Select a new currency from the list
+
+<img src="https://github.com/KonstantinErmolenko/CurrencyConverter/blob/main/Preview/preview-2.png" width="207" height="448"> 
