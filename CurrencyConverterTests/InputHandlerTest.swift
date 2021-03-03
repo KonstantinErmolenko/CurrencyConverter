@@ -108,25 +108,25 @@ class InputHandlerTest: XCTestCase {
     
     func testConvertingFromDecimalStringToNumberWorksCorrectly() {
         let str = "1 091,76"
-        let result = sut.convertToNumber(string: str)
+        let result = sut.convertToNumber(string: str, maximumFractionDigits: 2)
         XCTAssertEqual(result, 1091.76, "Converting string to number is incorrect")
     }
     
     func testConvertingFromWholeStringWithExtraSpaceToNumberWorksCorrectly() {
         let str = "2 58"
-        let result = sut.convertToNumber(string: str)
+        let result = sut.convertToNumber(string: str, maximumFractionDigits: 2)
         XCTAssertEqual(result, 258, "Converting string to number is incorrect")
     }
     
     func testConvertingFromDecimalNumberToStringWorksCorrectly() {
         let number = 1091.76
-        let result = sut.convertToString(number: number)
+        let result = sut.convertToString(number: number, maximumFractionDigits: 2)
         XCTAssertEqual(result, "1 091,76", "Converting number to string is incorrect")
     }
     
     func testConvertingFromBigWholeNumberToStringWorksCorrectly() {
         let number = 1500000.0
-        let result = sut.convertToString(number: number)
+        let result = sut.convertToString(number: number, maximumFractionDigits: 2)
         XCTAssertEqual(result, "1 500 000", "Converting number to string is incorrect")
     }
 }
